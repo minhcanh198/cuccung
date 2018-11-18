@@ -1,6 +1,6 @@
 ﻿namespace Windows_MediaPlayer
 {
-    partial class Manage_music
+    partial class Manage_Videos
     {
         /// <summary>
         /// Required designer variable.
@@ -139,7 +139,7 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Learn more about library";
             // 
-            // Manage_music
+            // Manage_Videos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -154,8 +154,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Manage_music";
-            this.Text = "Manage_music";
+            this.Name = "Manage_Videos";
+            this.Text = "Manage_Videos";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

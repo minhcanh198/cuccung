@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Windows_MediaPlayer
 {
-    public partial class Manage_music : Form
+    public partial class Manage_Videos : Form
     {
-        public Manage_music()
+        public Manage_Videos()
         {
             InitializeComponent();
             listBox1.Items.Add(@"D:\M E D I A\M U S I C\");
@@ -43,12 +43,12 @@ namespace Windows_MediaPlayer
 
         private void OKbtn_Click(object sender, EventArgs e)
         {
-            //this.Visible = false;
+            this.Visible = false;
         }
 
         private void addbtn_Click(object sender, EventArgs e)
         {
-            string st;
+            string st="a";
             FolderBrowserDialog ofd = new FolderBrowserDialog();
             if (ofd.ShowDialog()== DialogResult.OK)
             {

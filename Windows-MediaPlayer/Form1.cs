@@ -75,11 +75,8 @@ namespace Windows_MediaPlayer
             {
                 listView1.View = View.Details;
             }
+
             if (comboBox1.SelectedIndex == 1)
-            {
-                listView1.View = View.SmallIcon;
-            }
-            if (comboBox1.SelectedIndex == 2)
             {
                 listView1.View = View.LargeIcon;
 
@@ -88,26 +85,6 @@ namespace Windows_MediaPlayer
 
         }
 
-
-
-        private void roundButton1_MouseUp(object sender, MouseEventArgs e)
-        {
-            //Bitmap image1;
-            //image1 = (Bitmap)roundButton1.Image;
-            //int x, y;
-            //for (x = 0; x < image1.Width; x++)
-            //{
-            //    for (y = 0; y < image1.Height; y++)
-            //    {
-            //        Color pixelColor = image1.GetPixel(x, y);
-            //        //Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
-            //        //Color newColor = Color.Red;
-            //        Color newcl = 
-            //        image1.SetPixel(x, y, newColor);
-            //    }
-            //}
-
-        }
 
         private void roundButton1_MouseLeave(object sender, EventArgs e)
         {
@@ -224,15 +201,14 @@ namespace Windows_MediaPlayer
                 listView1.View = View.Details;
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
-                listView1.LargeImageList = imageList1;
-                listView1.SmallImageList = imageList1;
+                listView1.LargeImageList = imageList2;
+                listView1.SmallImageList = imageList2;
 
                 listView1.Columns.Add("Song",200);
                 listView1.Columns.Add("Singer",90);
                 listView1.Columns.Add("Length",100);
                 listView1.Columns.Add("Year");
                 listView1.Columns.Add("Filename",0);
-                string[] arr = new string[10];
                 ListViewItem itm;
 
                 string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
@@ -244,20 +220,20 @@ namespace Windows_MediaPlayer
                     itm = new ListViewItem(converttotaglib(filedir));
 
                     listView1.Items.Add(itm);
-                    itm.ImageIndex = 4;
+                    itm.ImageIndex = 2;
 
                 }
 
             }
-            if (name == "Album")
+            else if (name == "Album")
             {
                 textBoxaddress.Text= "Library → Music → Albums";
                 listView1.Clear();
                 listView1.View = View.Details;
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
-                listView1.LargeImageList = imageList1;
-                listView1.SmallImageList = imageList1;
+                listView1.LargeImageList = imageList2;
+                listView1.SmallImageList = imageList2;
 
                 listView1.Columns.Add("Song", 200);
                 listView1.Columns.Add("Singer", 90);
@@ -265,7 +241,6 @@ namespace Windows_MediaPlayer
                 listView1.Columns.Add("Year");
                 listView1.Columns.Add("Filename", 0);
                 listView1.Columns.Add("AdressFile", 0);
-                string[] arr = new string[10];
                 ListViewItem itm;
 
                 string[] fileEntries = Directory.GetFiles(MusicLib,"*.mp3");
@@ -277,9 +252,30 @@ namespace Windows_MediaPlayer
                     itm = new ListViewItem(converttotaglib(filedir));
 
                     listView1.Items.Add(itm);
-                    itm.ImageIndex = 4;
+                    itm.ImageIndex = 2;
 
                 }
+            }
+            else if (name== "Videos")
+            {
+                textBoxaddress.Text = "Library → Videos → All Videos";
+                listView1.Clear();
+                listView1.View = View.Details;
+
+            }
+            else if (name=="Pictures")
+            {
+                textBoxaddress.Text = "Library → Pictures→ All Pictures";
+                listView1.Clear();
+                listView1.View = View.Details;
+
+            }
+            else if (name == "Playlists")
+            {
+                textBoxaddress.Text = "Library → Playlists";
+                listView1.Clear();
+                listView1.View = View.Details;
+
             }
 
 
@@ -376,24 +372,7 @@ namespace Windows_MediaPlayer
             axWindowsMediaPlayer1.currentPlaylist = playlist;
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            WMPLib.IWMPMedia media;
-            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
 
-            int count = listView1.SelectedItems.Count;
-            for (int i = 0; i < count; i++)
-            {
-                string st = "D:/M E D I A/M U S I C/" + listView1.SelectedItems[i].SubItems[4].Text;
-                media = axWindowsMediaPlayer1.newMedia(st);
-                playlist.appendItem(media);
-
-            }
-
-            axWindowsMediaPlayer1.currentPlaylist = playlist;
-
-
-        }
         private void button4_Click(object sender, EventArgs e)
         {
             var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
@@ -522,6 +501,25 @@ namespace Windows_MediaPlayer
         private void button5_Click(object sender, EventArgs e)
         {
             MessageBox.Show(MusicLib);
+        }
+        bool loop = false;
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (loop == true)
+            {
+                loop = false;
+                axWindowsMediaPlayer1.settings.setMode("loop", false);
+                label2.Text = "Turn off repeat";
+            }
+            else
+            {
+                loop = true;
+                axWindowsMediaPlayer1.settings.setMode("loop", true);
+                label2.Text = "Turn on repeat";
+                
+
+            }
         }
     }
 }
