@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists", 1, 1);
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Album", 5, 5);
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Artists", 6, 6);
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Genre", 7, 7);
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Music", 2, 2, new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Videos", 3, 3);
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Pictures", 4, 4);
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Playlists", 1, 1);
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Artists", 6, 6);
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Album", 5, 5);
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Genre", 7, 7);
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Music", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Videos", 3, 3);
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Pictures", 4, 4);
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -77,10 +77,13 @@
             this.textBoxaddress = new System.Windows.Forms.TextBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.helpbut = new System.Windows.Forms.Button();
+            this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.button6 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.playlist_listview = new System.Windows.Forms.ListView();
             this.backButton = new Windows_MediaPlayer.RoundButton();
             this.forwardButton = new Windows_MediaPlayer.RoundButton();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
@@ -120,69 +123,68 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitContainer1.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainer1.Panel1.BackgroundImage")));
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.AliceBlue;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
+            this.splitContainer1.Panel1MinSize = 120;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(706, 342);
-            this.splitContainer1.SplitterDistance = 152;
+            this.splitContainer1.SplitterDistance = 133;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
             // 
             // treeView1
             // 
-            this.treeView1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.treeView1.BackColor = System.Drawing.Color.AliceBlue;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
+            this.treeView1.Location = new System.Drawing.Point(0, 16);
             this.treeView1.Name = "treeView1";
-            treeNode1.ImageIndex = 0;
-            treeNode1.Name = "Library";
-            treeNode1.Text = "Library";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "Playlists";
-            treeNode2.SelectedImageIndex = 1;
-            treeNode2.Text = "Playlists";
-            treeNode3.ImageIndex = 5;
-            treeNode3.Name = "Album";
-            treeNode3.SelectedImageIndex = 5;
-            treeNode3.Text = "Album";
-            treeNode4.ImageIndex = 6;
-            treeNode4.Name = "Artists";
-            treeNode4.SelectedImageIndex = 6;
-            treeNode4.Text = "Artists";
-            treeNode5.ImageIndex = 7;
-            treeNode5.Name = "Genre";
-            treeNode5.SelectedImageIndex = 7;
-            treeNode5.Text = "Genre";
-            treeNode6.ImageIndex = 2;
-            treeNode6.Name = "Music";
-            treeNode6.SelectedImageIndex = 2;
-            treeNode6.Text = "Music";
-            treeNode7.ImageIndex = 3;
-            treeNode7.Name = "Videos";
-            treeNode7.SelectedImageIndex = 3;
-            treeNode7.Text = "Videos";
-            treeNode8.ImageIndex = 4;
-            treeNode8.Name = "Pictures";
-            treeNode8.SelectedImageIndex = 4;
-            treeNode8.Text = "Pictures";
+            treeNode9.ImageIndex = 0;
+            treeNode9.Name = "Library";
+            treeNode9.Text = "Library";
+            treeNode10.ImageIndex = 1;
+            treeNode10.Name = "Playlists";
+            treeNode10.SelectedImageIndex = 1;
+            treeNode10.Text = "Playlists";
+            treeNode11.ImageIndex = 6;
+            treeNode11.Name = "Artists";
+            treeNode11.SelectedImageIndex = 6;
+            treeNode11.Text = "Artists";
+            treeNode12.ImageIndex = 5;
+            treeNode12.Name = "Album";
+            treeNode12.SelectedImageIndex = 5;
+            treeNode12.Text = "Album";
+            treeNode13.ImageIndex = 7;
+            treeNode13.Name = "Genre";
+            treeNode13.SelectedImageIndex = 7;
+            treeNode13.Text = "Genre";
+            treeNode14.ImageIndex = 2;
+            treeNode14.Name = "Music";
+            treeNode14.SelectedImageIndex = 2;
+            treeNode14.Text = "Music";
+            treeNode15.ImageIndex = 3;
+            treeNode15.Name = "Videos";
+            treeNode15.SelectedImageIndex = 3;
+            treeNode15.Text = "Videos";
+            treeNode16.ImageIndex = 4;
+            treeNode16.Name = "Pictures";
+            treeNode16.SelectedImageIndex = 4;
+            treeNode16.Text = "Pictures";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            treeNode9,
+            treeNode10,
+            treeNode14,
+            treeNode15,
+            treeNode16});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowLines = false;
-            this.treeView1.Size = new System.Drawing.Size(150, 340);
+            this.treeView1.Size = new System.Drawing.Size(150, 324);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -198,6 +200,7 @@
             this.imageList1.Images.SetKeyName(5, "Albums.png");
             this.imageList1.Images.SetKeyName(6, "Artists.png");
             this.imageList1.Images.SetKeyName(7, "Genre.png");
+            this.imageList1.Images.SetKeyName(8, "helpbut.png");
             // 
             // splitContainer2
             // 
@@ -212,54 +215,67 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.AliceBlue;
+            this.splitContainer2.Panel2.Controls.Add(this.playlist_listview);
             this.splitContainer2.Panel2.Controls.Add(this.button4);
             this.splitContainer2.Panel2.Controls.Add(this.button3);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2MinSize = 200;
-            this.splitContainer2.Size = new System.Drawing.Size(551, 340);
-            this.splitContainer2.SplitterDistance = 347;
+            this.splitContainer2.Size = new System.Drawing.Size(570, 340);
+            this.splitContainer2.SplitterDistance = 358;
             this.splitContainer2.TabIndex = 1;
             // 
             // listView1
             // 
+            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView1.BackColor = System.Drawing.Color.AliceBlue;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.GridLines = true;
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(347, 340);
+            this.listView1.OwnerDraw = true;
+            this.listView1.Size = new System.Drawing.Size(358, 340);
             this.listView1.TabIndex = 1;
+            this.listView1.TileSize = new System.Drawing.Size(1, 1);
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.listView1.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.listView1_DrawColumnHeader);
+            this.listView1.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.listView1_DrawItem);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
+            this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.AliceBlue;
             this.button4.Location = new System.Drawing.Point(7, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(67, 23);
             this.button4.TabIndex = 2;
             this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.AliceBlue;
             this.button3.Location = new System.Drawing.Point(80, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(73, 23);
             this.button3.TabIndex = 1;
             this.button3.Text = "Clear";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(157, 3);
+            this.button2.BackColor = System.Drawing.Color.AliceBlue;
+            this.button2.Location = new System.Drawing.Point(165, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 23);
             this.button2.TabIndex = 0;
             this.button2.Text = "Hide";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // menuStrip1
@@ -272,12 +288,13 @@
             this.createPlaylistToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(1, 37);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(343, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(223, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // organizeToolStripMenuItem
             // 
+            this.organizeToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
             this.organizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageLibraryToolStripMenuItem,
             this.applyMediaInformationChangesToolStripMenuItem,
@@ -310,14 +327,14 @@
             // videosToolStripMenuItem
             // 
             this.videosToolStripMenuItem.Name = "videosToolStripMenuItem";
-            this.videosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.videosToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.videosToolStripMenuItem.Text = "Videos";
             this.videosToolStripMenuItem.Click += new System.EventHandler(this.videosToolStripMenuItem_Click);
             // 
             // picturesToolStripMenuItem
             // 
             this.picturesToolStripMenuItem.Name = "picturesToolStripMenuItem";
-            this.picturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.picturesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.picturesToolStripMenuItem.Text = "Pictures";
             this.picturesToolStripMenuItem.Click += new System.EventHandler(this.picturesToolStripMenuItem_Click);
             // 
@@ -357,6 +374,7 @@
             // 
             // streamToolStripMenuItem
             // 
+            this.streamToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
             this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allowInternetAccessToHomeMediaToolStripMenuItem,
             this.toolStripSeparator3,
@@ -384,6 +402,7 @@
             // 
             // createPlaylistToolStripMenuItem
             // 
+            this.createPlaylistToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
             this.createPlaylistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createPlaylistToolStripMenuItem1,
             this.createAutoPlaylistToolStripMenuItem});
@@ -406,47 +425,54 @@
             // tabplaybt
             // 
             this.tabplaybt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabplaybt.BackColor = System.Drawing.Color.AliceBlue;
             this.tabplaybt.Location = new System.Drawing.Point(475, 10);
             this.tabplaybt.Name = "tabplaybt";
             this.tabplaybt.Size = new System.Drawing.Size(75, 47);
             this.tabplaybt.TabIndex = 1;
             this.tabplaybt.Text = "Play";
             this.tabplaybt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tabplaybt.UseVisualStyleBackColor = true;
+            this.tabplaybt.UseVisualStyleBackColor = false;
             this.tabplaybt.Click += new System.EventHandler(this.button1_Click);
+            this.tabplaybt.MouseHover += new System.EventHandler(this.tabplaybt_MouseHover);
             // 
             // tabburnbt
             // 
             this.tabburnbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabburnbt.BackColor = System.Drawing.Color.AliceBlue;
             this.tabburnbt.Location = new System.Drawing.Point(555, 10);
             this.tabburnbt.Name = "tabburnbt";
             this.tabburnbt.Size = new System.Drawing.Size(75, 47);
             this.tabburnbt.TabIndex = 9;
             this.tabburnbt.Text = "Burn";
             this.tabburnbt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tabburnbt.UseVisualStyleBackColor = true;
+            this.tabburnbt.UseVisualStyleBackColor = false;
             this.tabburnbt.Click += new System.EventHandler(this.tabburnbt_Click);
+            this.tabburnbt.MouseHover += new System.EventHandler(this.tabburnbt_MouseHover);
             // 
             // tabsyncbt
             // 
             this.tabsyncbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabsyncbt.BackColor = System.Drawing.Color.AliceBlue;
             this.tabsyncbt.Location = new System.Drawing.Point(635, 10);
             this.tabsyncbt.Name = "tabsyncbt";
             this.tabsyncbt.Size = new System.Drawing.Size(71, 47);
             this.tabsyncbt.TabIndex = 10;
             this.tabsyncbt.Text = "Sync";
             this.tabsyncbt.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.tabsyncbt.UseVisualStyleBackColor = true;
+            this.tabsyncbt.UseVisualStyleBackColor = false;
             this.tabsyncbt.Click += new System.EventHandler(this.tabsyncbt_Click);
+            this.tabsyncbt.MouseHover += new System.EventHandler(this.tabsyncbt_MouseHover);
             // 
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Details",
             "Large icon"});
-            this.comboBox1.Location = new System.Drawing.Point(513, 0);
+            this.comboBox1.Location = new System.Drawing.Point(492, 5);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(57, 21);
             this.comboBox1.TabIndex = 14;
@@ -463,18 +489,20 @@
             // 
             // textBoxaddress
             // 
+            this.textBoxaddress.BackColor = System.Drawing.Color.AliceBlue;
             this.textBoxaddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxaddress.Location = new System.Drawing.Point(73, 13);
+            this.textBoxaddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxaddress.Location = new System.Drawing.Point(87, 11);
             this.textBoxaddress.Name = "textBoxaddress";
-            this.textBoxaddress.Size = new System.Drawing.Size(297, 13);
+            this.textBoxaddress.Size = new System.Drawing.Size(297, 14);
             this.textBoxaddress.TabIndex = 15;
-            this.textBoxaddress.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBoxSearch
             // 
             this.textBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSearch.BackColor = System.Drawing.Color.AliceBlue;
             this.textBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSearch.Location = new System.Drawing.Point(585, 1);
+            this.textBoxSearch.Location = new System.Drawing.Point(564, 5);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(100, 20);
             this.textBoxSearch.TabIndex = 16;
@@ -486,89 +514,137 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(244, 424);
+            this.label1.Location = new System.Drawing.Point(490, 424);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 17;
             this.label1.Text = "nowplaying";
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(644, 423);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(42, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Full Screen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.AliceBlue;
+            this.panel1.Controls.Add(this.helpbut);
             this.panel1.Controls.Add(this.textBoxSearch);
             this.panel1.Controls.Add(this.comboBox1);
-            this.panel1.Location = new System.Drawing.Point(1, 40);
+            this.panel1.Location = new System.Drawing.Point(1, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(704, 21);
+            this.panel1.Size = new System.Drawing.Size(704, 29);
             this.panel1.TabIndex = 20;
+            // 
+            // helpbut
+            // 
+            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
+            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
+            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.helpbut.ImageKey = "(none)";
+            this.helpbut.ImageList = this.imageList1;
+            this.helpbut.Location = new System.Drawing.Point(671, 3);
+            this.helpbut.Name = "helpbut";
+            this.helpbut.Size = new System.Drawing.Size(24, 23);
+            this.helpbut.TabIndex = 17;
+            this.helpbut.UseVisualStyleBackColor = false;
+            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
+            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
+            // 
+            // imageList3
+            // 
+            this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
+            this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList3.Images.SetKeyName(0, "Artists.png");
             // 
             // button6
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(356, 419);
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button6.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.repeatbut;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button6.Location = new System.Drawing.Point(251, 419);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "button6";
+            this.button6.Size = new System.Drawing.Size(23, 23);
+            this.button6.TabIndex = 24;
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            this.button6.MouseHover += new System.EventHandler(this.button6_MouseHover);
             // 
-            // label2
+            // button5
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(585, 423);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "label2";
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Location = new System.Drawing.Point(217, 419);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(23, 23);
+            this.button5.TabIndex = 23;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button5.MouseHover += new System.EventHandler(this.button5_MouseHover);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.fullscreen;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.Location = new System.Drawing.Point(662, 419);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.TabIndex = 18;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
+            // 
+            // playlist_listview
+            // 
+            this.playlist_listview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playlist_listview.BackColor = System.Drawing.Color.AliceBlue;
+            this.playlist_listview.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playlist_listview.FullRowSelect = true;
+            this.playlist_listview.Location = new System.Drawing.Point(2, 90);
+            this.playlist_listview.Name = "playlist_listview";
+            this.playlist_listview.Size = new System.Drawing.Size(203, 229);
+            this.playlist_listview.TabIndex = 3;
+            this.playlist_listview.UseCompatibleStateImageBehavior = false;
             // 
             // backButton
             // 
             this.backButton.ImageIndex = 0;
             this.backButton.ImageList = this.imageList2;
-            this.backButton.Location = new System.Drawing.Point(9, 4);
+            this.backButton.Location = new System.Drawing.Point(9, -1);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(35, 35);
             this.backButton.TabIndex = 8;
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             this.backButton.MouseLeave += new System.EventHandler(this.roundButton1_MouseLeave);
+            this.backButton.MouseHover += new System.EventHandler(this.backButton_MouseHover);
             this.backButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButton1_MouseMove);
             // 
             // forwardButton
             // 
             this.forwardButton.ImageIndex = 1;
             this.forwardButton.ImageList = this.imageList2;
-            this.forwardButton.Location = new System.Drawing.Point(38, 4);
+            this.forwardButton.Location = new System.Drawing.Point(38, -1);
             this.forwardButton.Name = "forwardButton";
             this.forwardButton.Size = new System.Drawing.Size(35, 35);
             this.forwardButton.TabIndex = 7;
             this.forwardButton.UseVisualStyleBackColor = true;
             this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
             this.forwardButton.MouseLeave += new System.EventHandler(this.roundButton2_MouseLeave);
+            this.forwardButton.MouseHover += new System.EventHandler(this.forwardButton_MouseHover);
             this.forwardButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButton2_MouseMove);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(706, 454);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxaddress);
@@ -645,9 +721,12 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageList3;
+        private System.Windows.Forms.Button helpbut;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ListView playlist_listview;
     }
 }
 

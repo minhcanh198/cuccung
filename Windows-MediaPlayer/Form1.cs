@@ -25,10 +25,17 @@ namespace Windows_MediaPlayer
             InitializeComponent();
             lvwColumnSorter = new ListViewColumnSorter();
             this.listView1.ListViewItemSorter = lvwColumnSorter;
-            Manage_music ms = new Manage_music();
-            MusicLib = ms.getadress;
-
-            render("Music");
+            Manage_music manage_Music = new Manage_music();
+            Manage_Videos manage_Videos = new Manage_Videos();
+            Manage_Pictures manage_Pictures = new Manage_Pictures();
+            MusicLib = manage_Music.getadress;
+            VideosLib = manage_Videos.getadress;
+            PicturesLib = manage_Pictures.getadress;
+            now_is_at = "Music";
+            render(now_is_at);
+            this.listView1.BackColor = Color.AliceBlue;
+            this.listView1.ForeColor = Color.Black;
+            playlist_listview.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
         }
         Stack<string> backstack = new Stack<string>();
         Stack<string> forwardstack = new Stack<string>();
@@ -218,17 +225,24 @@ namespace Windows_MediaPlayer
             {
                 textBoxaddress.Text = "Library → Music";
                 listView1.Clear();
+                listView1.BackColor = Color.AliceBlue;
                 listView1.View = View.Details;
                 listView1.GridLines = true;
                 listView1.FullRowSelect = true;
                 listView1.LargeImageList = imageList2;
                 listView1.SmallImageList = imageList2;
 
-                listView1.Columns.Add("Song",200);
-                listView1.Columns.Add("Singer",90);
-                listView1.Columns.Add("Length",100);
-                listView1.Columns.Add("Year");
+                listView1.Columns.Add("Title",240);
+                listView1.Columns.Add("Contributing artist",180);
+                listView1.Columns.Add("Length",90);
+                listView1.Columns.Add("Release",70);
                 listView1.Columns.Add("Filename",0);
+                listView1.Columns.Add("Filedir",0);
+                listView1.Columns.Add("Album", 200);
+                listView1.Columns.Add("Genre", 70);
+                listView1.Columns.Add("Composer", 110);
+                listView1.Columns.Add("Size", 70);
+                listView1.Columns.Add("", 130);
                 ListViewItem itm;
 
                 string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
@@ -237,12 +251,39 @@ namespace Windows_MediaPlayer
                     string filedir;
                     filedir = fileName;
 
-                    itm = new ListViewItem(converttotaglib(filedir));
+                    itm = new ListViewItem(converttotaglib_music(filedir));
 
                     listView1.Items.Add(itm);
                     itm.ImageIndex = 2;
 
                 }
+
+            }
+            else if (name == "Artists")
+            {
+                textBoxaddress.Text = "Library → Music → Artists";
+                listView1.Clear();
+                listView1.View = View.LargeIcon;
+                listView1.LargeImageList = imageList3;
+
+                listView1.Columns.Add("Album artists", 50);
+                listView1.Columns.Add("Count", 50);
+                listView1.Columns.Add("Length", 50);
+
+                ListViewItem viewItem;
+                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
+                foreach (string fileName in fileEntries)
+                {
+                    string filedir;
+                    filedir = fileName;
+
+                    viewItem = new ListViewItem(converttotaglib_music(filedir));
+
+                    listView1.Items.Add(viewItem);
+                    viewItem.ImageIndex = 2;
+
+                }
+
 
             }
             else if (name == "Album")
@@ -269,10 +310,10 @@ namespace Windows_MediaPlayer
                     string filedir;
                     filedir = fileName;
 
-                    itm = new ListViewItem(converttotaglib(filedir));
+                    itm = new ListViewItem(filedir);
 
                     listView1.Items.Add(itm);
-                    itm.ImageIndex = 2;
+                    itm.ImageIndex = 0;
 
                 }
             }
@@ -297,12 +338,13 @@ namespace Windows_MediaPlayer
                 listView1.View = View.Details;
 
             }
+            
 
 
         }
-        string[] converttotaglib(string a)
+        string[] converttotaglib_music(string a)
         {
-            string[] returnvalue= new string[6];
+            string[] returnvalue= new string[10];
             TagLib.File mp3 = TagLib.File.Create(a);
 
             if (mp3.Tag.Title == null)
@@ -320,13 +362,22 @@ namespace Windows_MediaPlayer
                 returnvalue[3] = mp3.Tag.Year.ToString();
             returnvalue[4] = Path.GetFileName(a);
             returnvalue[5] = a;
+            returnvalue[6] = mp3.Tag.Album;
+            returnvalue[7] = mp3.Tag.FirstGenre;
+            returnvalue[8] = mp3.Tag.FirstComposer;
+            double size = new FileInfo(a).Length;
+            size = size / 1024 / 1024;
+            size = Math.Round(size, 1);
+            returnvalue[9] = size.ToString()+" MB";
 
             return returnvalue;
 
         }
+        string now_is_at;
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            render(e.Node.Name);
+            now_is_at = e.Node.Name;
+            render(now_is_at);
             backstack.Push(e.Node.Name);
             forwardstack.Clear();
 
@@ -375,64 +426,39 @@ namespace Windows_MediaPlayer
             button4.Text = "Start Burn";
         }
 
-        private void button1_Click_3(object sender, EventArgs e)
-        {
-            WMPLib.IWMPMedia media;
-            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
-
-            int count = listView1.SelectedItems.Count;
-            for ( int i= 0; i<count; i++)
-            {
-                string st = listView1.SelectedItems[i].SubItems[5].Text;
-                media = axWindowsMediaPlayer1.newMedia(st);
-                playlist.appendItem(media);
-
-            }
-
-            axWindowsMediaPlayer1.currentPlaylist = playlist;
-        }
 
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
-            WMPLib.IWMPMedia media;
-            OpenFileDialog ofdSong = new OpenFileDialog();
-            ofdSong.Multiselect = true;
-            if (ofdSong.ShowDialog() == DialogResult.OK)
-            {
-                foreach (string file in ofdSong.FileNames)
-                {
-                    media = axWindowsMediaPlayer1.newMedia(file);
-                    playlist.appendItem(media);
-                }
-            }
-            axWindowsMediaPlayer1.currentPlaylist = playlist;
-            axWindowsMediaPlayer1.Ctlcontrols.play();
-
-        }
-
-  
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             WMPLib.IWMPMedia media;
             var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
             int count = listView1.SelectedItems.Count;
+            playlist_listview.Clear();
+            playlist_listview.Columns.Add("Song", 300);
+            playlist_listview.Columns.Add("Artist", 280);
+            playlist_listview.Columns.Add("Length", 150);
+            playlist_listview.Columns.Add("Path", 0);
+
+            playlist_listview.View = View.Details;
             for (int i = 0; i < count; i++)
             {
                 string st = listView1.SelectedItems[i].SubItems[5].Text;
+                string[] row = {
+                        listView1.SelectedItems[i].SubItems[0].Text,
+                        listView1.SelectedItems[i].SubItems[1].Text,
+                        listView1.SelectedItems[i].SubItems[2].Text,
+                        listView1.SelectedItems[i].SubItems[5].Text,
+
+                    };
+                var listviewitem = new ListViewItem(row);
+
+                playlist_listview.Items.Add(listviewitem);
+
                 media = axWindowsMediaPlayer1.newMedia(st);
                 playlist.appendItem(media);
-
             }
-
-            axWindowsMediaPlayer1.currentPlaylist = playlist;
+                axWindowsMediaPlayer1.currentPlaylist = playlist;
 
         }
 
@@ -443,9 +469,27 @@ namespace Windows_MediaPlayer
                 WMPLib.IWMPMedia media;
                 var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
                 int count = listView1.SelectedItems.Count;
+                playlist_listview.Clear();
+                playlist_listview.Columns.Add("Song", 200);
+                playlist_listview.Columns.Add("Artist", 150);
+                playlist_listview.Columns.Add("Length", 100);
+                playlist_listview.Columns.Add("Path", 0);
+
+                playlist_listview.View = View.Details;
                 for (int i = 0; i < count; i++)
                 {
                     string st = listView1.SelectedItems[i].SubItems[5].Text;
+                    string[] row = {
+                        listView1.SelectedItems[i].SubItems[0].Text,
+                        listView1.SelectedItems[i].SubItems[1].Text,
+                        listView1.SelectedItems[i].SubItems[2].Text,
+                        listView1.SelectedItems[i].SubItems[5].Text,
+
+                    };
+                    var listviewitem = new ListViewItem(row);
+
+                    playlist_listview.Items.Add(listviewitem);
+
                     media = axWindowsMediaPlayer1.newMedia(st);
                     playlist.appendItem(media);
 
@@ -456,20 +500,90 @@ namespace Windows_MediaPlayer
 
             }
         }
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        ContextMenu contextMenu = new ContextMenu();
+                        contextMenu.MenuItems.Add("Play");
+                        contextMenu.MenuItems.Add("Play all");
+                        contextMenu.MenuItems.Add("Play next");
+                        contextMenu.MenuItems.Add("Cast to device");
+                        contextMenu.MenuItems.Add("_______");
+                        contextMenu.MenuItems.Add("Edit");
+                        contextMenu.MenuItems.Add("Rate");
+                        contextMenu.MenuItems.Add("Find album info");
+                        contextMenu.MenuItems.Add("Delete");
+                        contextMenu.MenuItems.Add("_______");
+                        contextMenu.MenuItems.Add("Property");
+                        contextMenu.MenuItems.Add("_______");
+                        contextMenu.MenuItems.Add("Open file location");
+
+
+                        contextMenu.Show(listView1,e.Location);
+                        contextMenu.MenuItems[0].Click += this.listView1_DoubleClick;
+                        break;
+                    }
+            }
+
+        }
 
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            ListViewItem foundItem =
-                listView1.FindItemWithText(textBoxSearch.Text, true, 0, true);
-            if (foundItem != null)
-            {
-                listView1.TopItem = foundItem;
 
+            listView1.BeginUpdate();
+
+            // restore all items in case user deletes some characters in the textbox
+            render(now_is_at);
+
+            string search = textBoxSearch.Text;
+            if (search != String.Empty)
+            {
+                for (int i = listView1.Items.Count - 1; i >= 0; i--)
+                {
+                    ListViewItem currentItem = listView1.Items[i];
+                    if (ItemMatches(currentItem, search))
+                    {
+                        currentItem.BackColor = Color.AliceBlue;
+                    }
+                    else
+                    {
+                        listView1.Items.RemoveAt(i);
+                    }
+                }
             }
+
+            listView1.EndUpdate();
+        }
+
+        private bool ItemMatches(ListViewItem item, string text)
+        {
+            bool matches = false;
+
+            matches |= item.Text.ToLower().Contains(text.ToLower());
+
+            if (matches)
+            {
+                return true;
+            }
+
+            foreach (ListViewItem.ListViewSubItem subitem in item.SubItems)
+            {
+                matches |= subitem.Text.ToLower().Contains(text.ToLower());
+                if (matches)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void textBoxSearch_MouseClick(object sender, MouseEventArgs e)
         {
+            textBoxSearch.Clear();
             textBoxSearch.Font = new Font(textBoxSearch.Font, FontStyle.Regular);
         }
 
@@ -485,10 +599,7 @@ namespace Windows_MediaPlayer
 
         private void axWindowsMediaPlayer1_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
         {
-           //if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
-           // {
-           //     label1.Text = axWindowsMediaPlayer1.currentMedia.getItemInfo("Title");
-           // } 
+
             label1.Text = axWindowsMediaPlayer1.currentMedia.getItemInfo("Title");
         }
 
@@ -518,25 +629,127 @@ namespace Windows_MediaPlayer
 
         }
 
+ 
+
+        private void helpbut_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(helpbut, "Help");
+        }
+
+        private void backButton_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(backButton, "Back");
+        }
+
+        private void forwardButton_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(forwardButton, "Forward");
+        }
+
+        private void tabplaybt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabplaybt,"Create playlist, manage content, and share your music");
+
+        }
+
+        private void tabburnbt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabburnbt, "Burn files to discs");
+
+
+        }
+        private void tabsyncbt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabsyncbt, "Sync content to and from your potable devices");
+
+        }
+
+        private void helpbut_Click(object sender, EventArgs e)
+        {
+            string url;
+            url = "https://www.google.com.vn/";
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void listView1_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.Graphics.FillRectangle(Brushes.AliceBlue, e.Bounds);
+            e.DrawText();
+        }
+
+        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
 
         bool loop = false;
+        bool shuffle = false;
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (shuffle==true)
+            {
+                shuffle = false;
+                axWindowsMediaPlayer1.settings.setMode("shuffle", true);
+            }
+            else if (shuffle==false)
+            {
+                shuffle = true;
+                axWindowsMediaPlayer1.settings.setMode("shuffle", false);
+            }
+        }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click_1(object sender, EventArgs e)
         {
             if (loop == true)
             {
                 loop = false;
                 axWindowsMediaPlayer1.settings.setMode("loop", false);
-                label2.Text = "Turn off repeat";
             }
             else
             {
                 loop = true;
                 axWindowsMediaPlayer1.settings.setMode("loop", true);
-                label2.Text = "Turn on repeat";
-                
+            }
+
+        }
+
+        private void button5_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            if (shuffle == false)
+                tt.SetToolTip(button5, "Turn shuffle on");
+            else if (shuffle == true)
+            {
+                tt.SetToolTip(button5, "Turn shuffle off");
 
             }
+
+
+        }
+
+        private void button6_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            if (loop == true)
+                tt.SetToolTip(button6, "Turn repeat off ");
+            else if (loop == false)
+            {
+                tt.SetToolTip(button6, "Turn repeat on ");
+
+            }
+        }
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(button1, "Enter full screen mode");
         }
 
 

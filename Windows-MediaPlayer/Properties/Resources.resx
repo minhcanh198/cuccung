@@ -118,40 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fullscreen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullscreen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="if_083_Music_183211" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_083_Music_183211.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="helpbut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\helpbut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="if_165_man_singer_1_3099417" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_165-man-singer-1_3099417.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="media_shuffle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-shuffle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="if_button_blue_pause_40716" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_button_blue_pause_40716.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_button_blue_play_40717" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_button_blue_play_40717.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_cd_173172" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_cd_173172.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_folder_cds_61606" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_folder_cds_61606.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_ic_arrow_back_48px_352020" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_ic_arrow_back_48px_352020.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_ic_arrow_forward_48px_352024" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_ic_arrow_forward_48px_352024.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_sign_add_299068" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_sign-add_299068.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="if_sign_add_299068__1_" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\if_sign-add_299068 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_20_hinh_anh_mau_xanh_duong_nhat_cuc_ki_dep_1494511721_15" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\20-hinh-anh-mau-xanh-duong-nhat-cuc-ki-dep-1494511721-15.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="repeatbut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\repeatbut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

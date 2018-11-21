@@ -152,5 +152,17 @@
     <None Include="Resources\20-hinh-anh-mau-xanh-duong-nhat-cuc-ki-dep-1494511721-15.jpg" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\repeatbut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media-shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fullscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\helpbut.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

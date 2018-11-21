@@ -63,9 +63,9 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _20_hinh_anh_mau_xanh_duong_nhat_cuc_ki_dep_1494511721_15 {
+        internal static System.Drawing.Bitmap fullscreen {
             get {
-                object obj = ResourceManager.GetObject("_20_hinh_anh_mau_xanh_duong_nhat_cuc_ki_dep_1494511721_15", resourceCulture);
+                object obj = ResourceManager.GetObject("fullscreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
+        internal static System.Drawing.Bitmap helpbut {
             get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
+                object obj = ResourceManager.GetObject("helpbut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap if_083_Music_183211 {
+        internal static System.Drawing.Bitmap media_shuffle {
             get {
-                object obj = ResourceManager.GetObject("if_083_Music_183211", resourceCulture);
+                object obj = ResourceManager.GetObject("media_shuffle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,89 +93,9 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap if_165_man_singer_1_3099417 {
+        internal static System.Drawing.Bitmap repeatbut {
             get {
-                object obj = ResourceManager.GetObject("if_165_man_singer_1_3099417", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_button_blue_pause_40716 {
-            get {
-                object obj = ResourceManager.GetObject("if_button_blue_pause_40716", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_button_blue_play_40717 {
-            get {
-                object obj = ResourceManager.GetObject("if_button_blue_play_40717", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_cd_173172 {
-            get {
-                object obj = ResourceManager.GetObject("if_cd_173172", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_folder_cds_61606 {
-            get {
-                object obj = ResourceManager.GetObject("if_folder_cds_61606", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_ic_arrow_back_48px_352020 {
-            get {
-                object obj = ResourceManager.GetObject("if_ic_arrow_back_48px_352020", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_ic_arrow_forward_48px_352024 {
-            get {
-                object obj = ResourceManager.GetObject("if_ic_arrow_forward_48px_352024", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_sign_add_299068 {
-            get {
-                object obj = ResourceManager.GetObject("if_sign_add_299068", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap if_sign_add_299068__1_ {
-            get {
-                object obj = ResourceManager.GetObject("if_sign_add_299068__1_", resourceCulture);
+                object obj = ResourceManager.GetObject("repeatbut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
