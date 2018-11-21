@@ -34,7 +34,7 @@ namespace Windows_MediaPlayer
         Stack<string> forwardstack = new Stack<string>();
         string MusicLib;
         string VideosLib;
-
+        string PicturesLib;
         private void Form1_Load(object sender, EventArgs e)
         {
             listView1.Dock = DockStyle.Fill;
@@ -189,8 +189,28 @@ namespace Windows_MediaPlayer
                 MusicLib = managemusicform.getadress;
             }
         }
-
-
+        private void picturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manage_Pictures manage_Pictures = new Manage_Pictures();
+            manage_Pictures.Text = "Pictures Library Location";
+            manage_Pictures.StartPosition = FormStartPosition.CenterScreen;
+            manage_Pictures.ShowDialog();
+            if (manage_Pictures.DialogResult== DialogResult.OK)
+            {
+                PicturesLib = manage_Pictures.getadress;
+            }
+        }
+        private void videosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Manage_Videos manage_Videos = new Manage_Videos();
+            manage_Videos.Text = "Videos Library Location";
+            manage_Videos.StartPosition = FormStartPosition.CenterScreen;
+            manage_Videos.ShowDialog();
+            if (manage_Videos.DialogResult== DialogResult.OK)
+            {
+                VideosLib = manage_Videos.getadress;
+            }
+        }
 
         private void render(string name)
         {
@@ -402,7 +422,8 @@ namespace Windows_MediaPlayer
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             WMPLib.IWMPMedia media;
-            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");            int count = listView1.SelectedItems.Count;
+            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
+            int count = listView1.SelectedItems.Count;
             for (int i = 0; i < count; i++)
             {
                 string st = listView1.SelectedItems[i].SubItems[5].Text;
@@ -421,7 +442,6 @@ namespace Windows_MediaPlayer
             {
                 WMPLib.IWMPMedia media;
                 var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
-
                 int count = listView1.SelectedItems.Count;
                 for (int i = 0; i < count; i++)
                 {
@@ -498,10 +518,7 @@ namespace Windows_MediaPlayer
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(MusicLib);
-        }
+
         bool loop = false;
 
         private void button6_Click(object sender, EventArgs e)
@@ -521,5 +538,7 @@ namespace Windows_MediaPlayer
 
             }
         }
+
+
     }
 }

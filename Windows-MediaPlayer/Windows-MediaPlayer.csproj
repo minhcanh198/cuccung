@@ -52,6 +52,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manage-Pictures.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manage-Pictures.Designer.cs">
+      <DependentUpon>Manage-Pictures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manage-Videos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manage-Pictures.resx">
+      <DependentUpon>Manage-Pictures.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manage-Videos.resx">
       <DependentUpon>Manage-Videos.cs</DependentUpon>

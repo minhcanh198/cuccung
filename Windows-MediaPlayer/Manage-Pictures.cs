@@ -11,13 +11,14 @@ using System.Windows.Forms;
 
 namespace Windows_MediaPlayer
 {
-    public partial class Manage_Videos : Form
+    public partial class Manage_Pictures : Form
     {
-        public Manage_Videos()
+        public Manage_Pictures()
         {
             InitializeComponent();
-            listBox1.Items.Add(@"D:\M E D I A\V I D E O S");
-            listBox1.Items.Add(@"D:\M E D I A");
+
+            listBox1.Items.Add(@"D:\M E D I A\P I C T U R E S\HD");
+            listBox1.Items.Add(@"D:\M E D I A\P I C T U R E S");
             this.CancelButton = cancelbtn;
             OKbtn.DialogResult = DialogResult.OK;
             address = listBox1.Items[0].ToString();

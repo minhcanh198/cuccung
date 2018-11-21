@@ -30,25 +30,21 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Playlists");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Album");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Artists", 1, 1);
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Genre", 5, 5);
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Music", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19});
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Videos");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Pictures");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Album", 5, 5);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Artists", 6, 6);
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Genre", 7, 7);
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Music", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Videos", 3, 3);
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Pictures", 4, 4);
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button5 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this.button4 = new System.Windows.Forms.Button();
@@ -127,7 +123,6 @@
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer1.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("splitContainer1.Panel1.BackgroundImage")));
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.splitContainer1.Panel1.Controls.Add(this.button5);
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
             // 
             // splitContainer1.Panel2
@@ -138,68 +133,71 @@
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(11, 227);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // treeView1
             // 
             this.treeView1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.ImageIndex = 0;
+            this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode13.Name = "Library";
-            treeNode13.Text = "Library";
-            treeNode14.Name = "Node1";
-            treeNode14.Text = "";
-            treeNode15.Name = "Playlists";
-            treeNode15.Text = "Playlists";
-            treeNode16.Name = "Node2";
-            treeNode16.Text = "";
-            treeNode17.ImageIndex = 4;
-            treeNode17.Name = "Album";
-            treeNode17.SelectedImageKey = "if_cd_173172.png";
-            treeNode17.Text = "Album";
-            treeNode18.ImageIndex = 1;
-            treeNode18.Name = "Artists";
-            treeNode18.SelectedImageIndex = 1;
-            treeNode18.Text = "Artists";
-            treeNode19.ImageIndex = 5;
-            treeNode19.Name = "Genre";
-            treeNode19.SelectedImageIndex = 5;
-            treeNode19.Text = "Genre";
-            treeNode20.Name = "Music";
-            treeNode20.Text = "Music";
-            treeNode21.Name = "Node4";
-            treeNode21.Text = "";
-            treeNode22.Name = "Videos";
-            treeNode22.Text = "Videos";
-            treeNode23.Name = "Node3";
-            treeNode23.Text = "";
-            treeNode24.Name = "Pictures";
-            treeNode24.Text = "Pictures";
+            treeNode1.ImageIndex = 0;
+            treeNode1.Name = "Library";
+            treeNode1.Text = "Library";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "Playlists";
+            treeNode2.SelectedImageIndex = 1;
+            treeNode2.Text = "Playlists";
+            treeNode3.ImageIndex = 5;
+            treeNode3.Name = "Album";
+            treeNode3.SelectedImageIndex = 5;
+            treeNode3.Text = "Album";
+            treeNode4.ImageIndex = 6;
+            treeNode4.Name = "Artists";
+            treeNode4.SelectedImageIndex = 6;
+            treeNode4.Text = "Artists";
+            treeNode5.ImageIndex = 7;
+            treeNode5.Name = "Genre";
+            treeNode5.SelectedImageIndex = 7;
+            treeNode5.Text = "Genre";
+            treeNode6.ImageIndex = 2;
+            treeNode6.Name = "Music";
+            treeNode6.SelectedImageIndex = 2;
+            treeNode6.Text = "Music";
+            treeNode7.ImageIndex = 3;
+            treeNode7.Name = "Videos";
+            treeNode7.SelectedImageIndex = 3;
+            treeNode7.Text = "Videos";
+            treeNode8.ImageIndex = 4;
+            treeNode8.Name = "Pictures";
+            treeNode8.SelectedImageIndex = 4;
+            treeNode8.Text = "Pictures";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode23,
-            treeNode24});
+            treeNode1,
+            treeNode2,
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowLines = false;
             this.treeView1.Size = new System.Drawing.Size(150, 340);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Library.png");
+            this.imageList1.Images.SetKeyName(1, "Playlist.png");
+            this.imageList1.Images.SetKeyName(2, "if_083_Music_183211.png");
+            this.imageList1.Images.SetKeyName(3, "Videos.png");
+            this.imageList1.Images.SetKeyName(4, "Pictures.png");
+            this.imageList1.Images.SetKeyName(5, "Albums.png");
+            this.imageList1.Images.SetKeyName(6, "Artists.png");
+            this.imageList1.Images.SetKeyName(7, "Genre.png");
             // 
             // splitContainer2
             // 
@@ -274,7 +272,7 @@
             this.createPlaylistToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(1, 37);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(223, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(343, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -312,14 +310,16 @@
             // videosToolStripMenuItem
             // 
             this.videosToolStripMenuItem.Name = "videosToolStripMenuItem";
-            this.videosToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.videosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.videosToolStripMenuItem.Text = "Videos";
+            this.videosToolStripMenuItem.Click += new System.EventHandler(this.videosToolStripMenuItem_Click);
             // 
             // picturesToolStripMenuItem
             // 
             this.picturesToolStripMenuItem.Name = "picturesToolStripMenuItem";
-            this.picturesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.picturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.picturesToolStripMenuItem.Text = "Pictures";
+            this.picturesToolStripMenuItem.Click += new System.EventHandler(this.picturesToolStripMenuItem_Click);
             // 
             // recordedTVToolStripMenuItem
             // 
@@ -541,7 +541,7 @@
             this.backButton.ImageList = this.imageList2;
             this.backButton.Location = new System.Drawing.Point(9, 4);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(29, 29);
+            this.backButton.Size = new System.Drawing.Size(35, 35);
             this.backButton.TabIndex = 8;
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -554,7 +554,7 @@
             this.forwardButton.ImageList = this.imageList2;
             this.forwardButton.Location = new System.Drawing.Point(38, 4);
             this.forwardButton.Name = "forwardButton";
-            this.forwardButton.Size = new System.Drawing.Size(28, 29);
+            this.forwardButton.Size = new System.Drawing.Size(35, 35);
             this.forwardButton.TabIndex = 7;
             this.forwardButton.UseVisualStyleBackColor = true;
             this.forwardButton.Click += new System.EventHandler(this.forwardButton_Click);
@@ -645,9 +645,9 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
