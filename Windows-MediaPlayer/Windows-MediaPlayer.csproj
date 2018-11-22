@@ -147,7 +147,6 @@
     <None Include="Resources\if_button_blue_play_40717.png" />
     <None Include="Resources\if_button_blue_pause_40716.png" />
     <None Include="Resources\if_165-man-singer-1_3099417.png" />
-    <None Include="Resources\if_083_Music_183211.png" />
     <None Include="Resources\background.jpg" />
     <None Include="Resources\20-hinh-anh-mau-xanh-duong-nhat-cuc-ki-dep-1494511721-15.jpg" />
     <None Include="Resources\Image1.bmp" />
@@ -163,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\helpbut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_083_Music_183211.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -83,6 +83,16 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap if_083_Music_183211 {
+            get {
+                object obj = ResourceManager.GetObject("if_083_Music_183211", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap media_shuffle {
             get {
                 object obj = ResourceManager.GetObject("media_shuffle", resourceCulture);

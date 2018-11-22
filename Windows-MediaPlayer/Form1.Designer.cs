@@ -47,6 +47,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.playlist_listview = new System.Windows.Forms.ListView();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -78,14 +79,17 @@
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.helpbut = new System.Windows.Forms.Button();
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.labeltimeremain = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.playlist_listview = new System.Windows.Forms.ListView();
             this.backButton = new Windows_MediaPlayer.RoundButton();
             this.forwardButton = new Windows_MediaPlayer.RoundButton();
+            this.helpbut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -97,6 +101,8 @@
             this.splitContainer2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // axWindowsMediaPlayer1
@@ -104,11 +110,12 @@
             this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 400);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 394);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(706, 50);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(706, 60);
             this.axWindowsMediaPlayer1.TabIndex = 0;
+            this.axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer1_PlayStateChange);
             this.axWindowsMediaPlayer1.CurrentPlaylistChange += new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(this.axWindowsMediaPlayer1_CurrentPlaylistChange);
             this.axWindowsMediaPlayer1.MediaChange += new AxWMPLib._WMPOCXEvents_MediaChangeEventHandler(this.axWindowsMediaPlayer1_MediaChange);
             // 
@@ -131,7 +138,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(706, 342);
+            this.splitContainer1.Size = new System.Drawing.Size(706, 346);
             this.splitContainer1.SplitterDistance = 133;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
@@ -221,7 +228,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.button3);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2MinSize = 200;
-            this.splitContainer2.Size = new System.Drawing.Size(570, 340);
+            this.splitContainer2.Size = new System.Drawing.Size(570, 344);
             this.splitContainer2.SplitterDistance = 358;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -235,7 +242,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.OwnerDraw = true;
-            this.listView1.Size = new System.Drawing.Size(358, 340);
+            this.listView1.Size = new System.Drawing.Size(358, 344);
             this.listView1.TabIndex = 1;
             this.listView1.TileSize = new System.Drawing.Size(1, 1);
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -245,6 +252,20 @@
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
+            // 
+            // playlist_listview
+            // 
+            this.playlist_listview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playlist_listview.BackColor = System.Drawing.Color.AliceBlue;
+            this.playlist_listview.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.playlist_listview.FullRowSelect = true;
+            this.playlist_listview.Location = new System.Drawing.Point(2, 90);
+            this.playlist_listview.Name = "playlist_listview";
+            this.playlist_listview.Size = new System.Drawing.Size(203, 233);
+            this.playlist_listview.TabIndex = 3;
+            this.playlist_listview.UseCompatibleStateImageBehavior = false;
             // 
             // button4
             // 
@@ -514,11 +535,11 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(490, 424);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 17;
-            this.label1.Text = "nowplaying";
             // 
             // panel1
             // 
@@ -533,51 +554,74 @@
             this.panel1.Size = new System.Drawing.Size(704, 29);
             this.panel1.TabIndex = 20;
             // 
-            // helpbut
-            // 
-            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
-            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
-            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.helpbut.ImageKey = "(none)";
-            this.helpbut.ImageList = this.imageList1;
-            this.helpbut.Location = new System.Drawing.Point(671, 3);
-            this.helpbut.Name = "helpbut";
-            this.helpbut.Size = new System.Drawing.Size(24, 23);
-            this.helpbut.TabIndex = 17;
-            this.helpbut.UseVisualStyleBackColor = false;
-            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
-            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
-            // 
             // imageList3
             // 
             this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
             this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList3.Images.SetKeyName(0, "Artists.png");
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // labeltimeremain
+            // 
+            this.labeltimeremain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labeltimeremain.AutoSize = true;
+            this.labeltimeremain.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.labeltimeremain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeltimeremain.Location = new System.Drawing.Point(280, 427);
+            this.labeltimeremain.Name = "labeltimeremain";
+            this.labeltimeremain.Size = new System.Drawing.Size(0, 15);
+            this.labeltimeremain.TabIndex = 26;
+            this.labeltimeremain.MouseHover += new System.EventHandler(this.labeltimeremain_MouseHover);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Location = new System.Drawing.Point(347, 418);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(324, 32);
+            this.panel2.TabIndex = 27;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Location = new System.Drawing.Point(313, 422);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 28);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button6.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.repeatbut;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.Location = new System.Drawing.Point(251, 419);
+            this.button6.Location = new System.Drawing.Point(251, 422);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(23, 23);
             this.button6.TabIndex = 24;
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
             this.button6.MouseHover += new System.EventHandler(this.button6_MouseHover);
             // 
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(217, 419);
+            this.button5.Location = new System.Drawing.Point(217, 422);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(23, 23);
             this.button5.TabIndex = 23;
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             this.button5.MouseHover += new System.EventHandler(this.button5_MouseHover);
             // 
@@ -586,27 +630,13 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.fullscreen;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(662, 419);
+            this.button1.Location = new System.Drawing.Point(670, 422);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(23, 23);
             this.button1.TabIndex = 18;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
-            // 
-            // playlist_listview
-            // 
-            this.playlist_listview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playlist_listview.BackColor = System.Drawing.Color.AliceBlue;
-            this.playlist_listview.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.playlist_listview.FullRowSelect = true;
-            this.playlist_listview.Location = new System.Drawing.Point(2, 90);
-            this.playlist_listview.Name = "playlist_listview";
-            this.playlist_listview.Size = new System.Drawing.Size(203, 229);
-            this.playlist_listview.TabIndex = 3;
-            this.playlist_listview.UseCompatibleStateImageBehavior = false;
             // 
             // backButton
             // 
@@ -636,6 +666,22 @@
             this.forwardButton.MouseHover += new System.EventHandler(this.forwardButton_MouseHover);
             this.forwardButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButton2_MouseMove);
             // 
+            // helpbut
+            // 
+            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
+            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
+            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.helpbut.ImageKey = "(none)";
+            this.helpbut.ImageList = this.imageList1;
+            this.helpbut.Location = new System.Drawing.Point(671, 3);
+            this.helpbut.Name = "helpbut";
+            this.helpbut.Size = new System.Drawing.Size(24, 23);
+            this.helpbut.TabIndex = 17;
+            this.helpbut.UseVisualStyleBackColor = false;
+            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
+            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,10 +689,12 @@
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(706, 454);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.labeltimeremain);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxaddress);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.backButton);
@@ -675,6 +723,9 @@
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -727,6 +778,10 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ListView playlist_listview;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label labeltimeremain;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

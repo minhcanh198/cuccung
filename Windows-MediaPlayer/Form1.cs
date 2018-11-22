@@ -44,6 +44,8 @@ namespace Windows_MediaPlayer
         string PicturesLib;
         private void Form1_Load(object sender, EventArgs e)
         {
+            timer1.Interval = 1000;
+
             listView1.Dock = DockStyle.Fill;
             textBoxaddress.Text = "Library";
             splitContainer2.Panel2Collapsed=true;
@@ -409,10 +411,7 @@ namespace Windows_MediaPlayer
 
         }
 
-        private void toolStripContainer1_ContentPanel_Load(object sender, EventArgs e)
-        {
 
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             splitContainer2.Panel2Collapsed = false;
@@ -432,12 +431,13 @@ namespace Windows_MediaPlayer
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             WMPLib.IWMPMedia media;
-            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
+            string plist = DateTime.UtcNow.ToString();
+            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist(plist);
             int count = listView1.SelectedItems.Count;
             playlist_listview.Clear();
-            playlist_listview.Columns.Add("Song", 300);
-            playlist_listview.Columns.Add("Artist", 280);
-            playlist_listview.Columns.Add("Length", 150);
+            playlist_listview.Columns.Add("Song", 150);
+            playlist_listview.Columns.Add("Artist", 100);
+            playlist_listview.Columns.Add("Length", 90);
             playlist_listview.Columns.Add("Path", 0);
 
             playlist_listview.View = View.Details;
@@ -457,8 +457,10 @@ namespace Windows_MediaPlayer
 
                 media = axWindowsMediaPlayer1.newMedia(st);
                 playlist.appendItem(media);
+
             }
-                axWindowsMediaPlayer1.currentPlaylist = playlist;
+
+            axWindowsMediaPlayer1.currentPlaylist = playlist;
 
         }
 
@@ -466,37 +468,8 @@ namespace Windows_MediaPlayer
         {
             if (e.KeyCode == Keys.Enter)
             {
-                WMPLib.IWMPMedia media;
-                var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist("myplaylist");
-                int count = listView1.SelectedItems.Count;
-                playlist_listview.Clear();
-                playlist_listview.Columns.Add("Song", 200);
-                playlist_listview.Columns.Add("Artist", 150);
-                playlist_listview.Columns.Add("Length", 100);
-                playlist_listview.Columns.Add("Path", 0);
-
-                playlist_listview.View = View.Details;
-                for (int i = 0; i < count; i++)
-                {
-                    string st = listView1.SelectedItems[i].SubItems[5].Text;
-                    string[] row = {
-                        listView1.SelectedItems[i].SubItems[0].Text,
-                        listView1.SelectedItems[i].SubItems[1].Text,
-                        listView1.SelectedItems[i].SubItems[2].Text,
-                        listView1.SelectedItems[i].SubItems[5].Text,
-
-                    };
-                    var listviewitem = new ListViewItem(row);
-
-                    playlist_listview.Items.Add(listviewitem);
-
-                    media = axWindowsMediaPlayer1.newMedia(st);
-                    playlist.appendItem(media);
-
-                }
-
-                axWindowsMediaPlayer1.currentPlaylist = playlist;
-
+                EventArgs ea = (EventArgs)e;
+                this.listView1_DoubleClick(sender, ea);
 
             }
         }
@@ -535,7 +508,6 @@ namespace Windows_MediaPlayer
 
             listView1.BeginUpdate();
 
-            // restore all items in case user deletes some characters in the textbox
             render(now_is_at);
 
             string search = textBoxSearch.Text;
@@ -601,6 +573,9 @@ namespace Windows_MediaPlayer
         {
 
             label1.Text = axWindowsMediaPlayer1.currentMedia.getItemInfo("Title");
+            var bmp = new Bitmap(Windows_MediaPlayer.Properties.Resources.if_083_Music_183211);
+            pictureBox1.BackgroundImage = (Image)bmp;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
         }
 
         private void button1_Click_2(object sender, EventArgs e)
@@ -752,6 +727,39 @@ namespace Windows_MediaPlayer
             tt.SetToolTip(button1, "Enter full screen mode");
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            double t = Math.Floor(axWindowsMediaPlayer1.currentMedia.duration - axWindowsMediaPlayer1.Ctlcontrols.currentPosition);
+            var timespan = new TimeSpan(0, 0, (int)t);
+            var yourStr = string.Format("{00}:{1:00}",
+                            (int)timespan.TotalMinutes,
+                            timespan.Seconds);
+            labeltimeremain.Text =  yourStr.ToString();
 
+        }
+
+        private void axWindowsMediaPlayer1_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                timer1.Start();
+            }
+            else if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPaused)
+            {
+                timer1.Stop();
+
+            }
+            else if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsStopped)
+            {
+                timer1.Stop();
+
+            }
+        }
+
+        private void labeltimeremain_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(labeltimeremain, "Time remaining");
+        }
     }
 }
