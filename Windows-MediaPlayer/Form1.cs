@@ -20,6 +20,7 @@ namespace Windows_MediaPlayer
     public partial class Form1 : Form
     {
         private ListViewColumnSorter lvwColumnSorter;
+        #region Form1
         public Form1()
         {
             InitializeComponent();
@@ -50,57 +51,80 @@ namespace Windows_MediaPlayer
             textBoxaddress.Text = "Library";
             splitContainer2.Panel2Collapsed=true;
         }
-
-
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == lvwColumnSorter.SortColumn)
+            if (e.KeyCode == Keys.F12)
             {
-                // Reverse the current sort direction for this column.
-                if (lvwColumnSorter.Order == SortOrder.Ascending)
-                {
-                    lvwColumnSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    lvwColumnSorter.Order = SortOrder.Ascending;
-                }
+                this.button1_Click_2(sender, e);
             }
-            else
+            if (e.KeyCode ==Keys.O && e.Control)
             {
-                // Set the column number that is to be sorted; default to ascending.
-                lvwColumnSorter.SortColumn = e.Column;
-                lvwColumnSorter.Order = SortOrder.Ascending;
-            }
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Multiselect = true;
 
-            // Perform the sort with these new sort options.
-            this.listView1.Sort();
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                if (axWindowsMediaPlayer1.fullScreen==true)
+                {
+                    axWindowsMediaPlayer1.fullScreen = false;
+                }
+            }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void helpbut_MouseHover(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0)
-            {
-                listView1.View = View.Details;
-            }
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(helpbut, "Help");
+        }
 
-            if (comboBox1.SelectedIndex == 1)
-            {
-                listView1.View = View.LargeIcon;
+        private void backButton_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(backButton, "Back");
+        }
 
-            }
+        private void forwardButton_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(forwardButton, "Forward");
+        }
 
+        private void tabplaybt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabplaybt, "Create playlist, manage content, and share your music");
 
         }
 
+        private void tabburnbt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabburnbt, "Burn files to discs");
 
+
+        }
+        private void tabsyncbt_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(tabsyncbt, "Sync content to and from your potable devices");
+
+        }
+
+        private void helpbut_Click(object sender, EventArgs e)
+        {
+            string url;
+            url = "https://www.google.com.vn/";
+            System.Diagnostics.Process.Start(url);
+        }
         private void roundButton1_MouseLeave(object sender, EventArgs e)
         {
             Bitmap image;
             image = new Bitmap(imageList2.Images[0]);
             backButton.Image = image;
         }
+
+        #region imageprocessing
         Bitmap Change_brightnessbutton(Bitmap b1)
         {
             Bitmap originalImage = b1;
@@ -115,7 +139,7 @@ namespace Windows_MediaPlayer
                 new float[] {contrast, 0, 0, 0, 0}, // scale red
                 new float[] {0, contrast, 0, 0, 0}, // scale green
                 new float[] {0, 0, contrast, 0, 0}, // scale blue
-                new float[] {0, 0, 0, 1.0f, 0}, // don't scale alpha
+                new float[] {0, 0, 0, 0.3f, 0}, // don't scale alpha
                 new float[] {adjustedBrightness, adjustedBrightness, adjustedBrightness, 0, 1}};
 
             ImageAttributes imageAttributes = new ImageAttributes();
@@ -129,31 +153,6 @@ namespace Windows_MediaPlayer
 
             return adjustedImage;
         }
-        private void roundButton1_MouseMove(object sender, MouseEventArgs e)
-        {
-            Bitmap originalImage = (Bitmap)backButton.Image;
-            backButton.Image = Change_brightnessbutton(originalImage);
-
-        }
-
-        private void roundButton2_MouseMove(object sender, MouseEventArgs e)
-        {
-            Bitmap originalImage = (Bitmap)forwardButton.Image;
-            forwardButton.Image = Change_brightnessbutton(originalImage);
-
-        }
-
-        private void roundButton2_MouseLeave(object sender, EventArgs e)
-        {
-            Bitmap image;
-            image = new Bitmap(imageList2.Images[1]);
-            forwardButton.Image = image;
-            
-        }
-
-
-
-
         private bool compare(Bitmap bmp1, Bitmap bmp2)
         {
             bool equals = true;
@@ -186,6 +185,33 @@ namespace Windows_MediaPlayer
             return equals;
         }
 
+        #endregion
+
+
+
+        private void roundButton1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Bitmap originalImage = (Bitmap)backButton.Image;
+            backButton.Image = Change_brightnessbutton(originalImage);
+
+        }
+
+        private void roundButton2_MouseMove(object sender, MouseEventArgs e)
+        {
+            Bitmap originalImage = (Bitmap)forwardButton.Image;
+            forwardButton.Image = Change_brightnessbutton(originalImage);
+
+        }
+
+        private void roundButton2_MouseLeave(object sender, EventArgs e)
+        {
+            Bitmap image;
+            image = new Bitmap(imageList2.Images[1]);
+            forwardButton.Image = image;
+
+        }
+
+
         private void musicToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Manage_music managemusicform = new Manage_music();
@@ -204,7 +230,7 @@ namespace Windows_MediaPlayer
             manage_Pictures.Text = "Pictures Library Location";
             manage_Pictures.StartPosition = FormStartPosition.CenterScreen;
             manage_Pictures.ShowDialog();
-            if (manage_Pictures.DialogResult== DialogResult.OK)
+            if (manage_Pictures.DialogResult == DialogResult.OK)
             {
                 PicturesLib = manage_Pictures.getadress;
             }
@@ -215,15 +241,96 @@ namespace Windows_MediaPlayer
             manage_Videos.Text = "Videos Library Location";
             manage_Videos.StartPosition = FormStartPosition.CenterScreen;
             manage_Videos.ShowDialog();
-            if (manage_Videos.DialogResult== DialogResult.OK)
+            if (manage_Videos.DialogResult == DialogResult.OK)
             {
                 VideosLib = manage_Videos.getadress;
             }
         }
-
-        private void render(string name)
+        private void createPlaylistToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (name=="Music")
+            TreeNode tn = new TreeNode("Untitled list");
+            tn.ImageIndex = 1;
+            tn.SelectedImageIndex = 1;
+            treeView1.Nodes[1].Nodes.Add(tn);
+            treeView1.ExpandAll();
+
+        }
+        string now_is_at;
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            now_is_at = e.Node.Name;
+            render(now_is_at);
+            backstack.Push(e.Node.Name);
+            forwardstack.Clear();
+
+        }
+
+
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            if (backstack.Count > 0)
+            {
+                forwardstack.Push(backstack.Peek());
+                string text = backstack.Pop();
+                render(text);
+
+            }
+
+        }
+
+        private void forwardButton_Click(object sender, EventArgs e)
+        {
+            if (forwardstack.Count > 0)
+            {
+                backstack.Push(forwardstack.Peek());
+                string text = forwardstack.Pop();
+                render(text);
+
+            }
+
+        }
+
+        #endregion
+
+        #region mainlistview
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            this.listView1.Sort();
+        }
+
+
+        private void listView1_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
+        {
+            e.Graphics.FillRectangle(Brushes.AliceBlue, e.Bounds);
+            e.DrawText();
+        }
+
+        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = true;
+        }
+
+        private void render(string node)
+        {
+            if (node == "Music")
             {
                 textBoxaddress.Text = "Library → Music";
                 listView1.Clear();
@@ -234,12 +341,12 @@ namespace Windows_MediaPlayer
                 listView1.LargeImageList = imageList2;
                 listView1.SmallImageList = imageList2;
 
-                listView1.Columns.Add("Title",240);
-                listView1.Columns.Add("Contributing artist",180);
-                listView1.Columns.Add("Length",90);
-                listView1.Columns.Add("Release",70);
-                listView1.Columns.Add("Filename",0);
-                listView1.Columns.Add("Filedir",0);
+                listView1.Columns.Add("Title", 240);
+                listView1.Columns.Add("Contributing artist", 180);
+                listView1.Columns.Add("Length", 90);
+                listView1.Columns.Add("Release", 70);
+                listView1.Columns.Add("Filename", 0);
+                listView1.Columns.Add("Filedir", 0);
                 listView1.Columns.Add("Album", 200);
                 listView1.Columns.Add("Genre", 70);
                 listView1.Columns.Add("Composer", 110);
@@ -261,7 +368,7 @@ namespace Windows_MediaPlayer
                 }
 
             }
-            else if (name == "Artists")
+            else if (node == "Artists")
             {
                 textBoxaddress.Text = "Library → Music → Artists";
                 listView1.Clear();
@@ -279,74 +386,134 @@ namespace Windows_MediaPlayer
                     string filedir;
                     filedir = fileName;
 
-                    viewItem = new ListViewItem(converttotaglib_music(filedir));
+                    viewItem = new ListViewItem(converttotaglib_artist(filedir));
 
                     listView1.Items.Add(viewItem);
-                    viewItem.ImageIndex = 2;
+                    viewItem.ImageIndex = 0;
 
                 }
 
 
             }
-            else if (name == "Album")
+            else if (node == "Album")
             {
-                textBoxaddress.Text= "Library → Music → Albums";
+                textBoxaddress.Text = "Library → Music → Albums";
                 listView1.Clear();
-                listView1.View = View.Details;
-                listView1.GridLines = true;
-                listView1.FullRowSelect = true;
-                listView1.LargeImageList = imageList2;
-                listView1.SmallImageList = imageList2;
+                listView1.View = View.LargeIcon;
+                listView1.LargeImageList = imageList3;
 
-                listView1.Columns.Add("Song", 200);
+                listView1.Columns.Add("Albums", 10);
                 listView1.Columns.Add("Singer", 90);
-                listView1.Columns.Add("Length",100);
+                listView1.Columns.Add("Length", 100);
                 listView1.Columns.Add("Year");
                 listView1.Columns.Add("Filename", 0);
                 listView1.Columns.Add("AdressFile", 0);
-                ListViewItem itm;
+                ListViewItem viewItem;
 
-                string[] fileEntries = Directory.GetFiles(MusicLib,"*.mp3");
+                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
                 foreach (string fileName in fileEntries)
                 {
                     string filedir;
                     filedir = fileName;
 
-                    itm = new ListViewItem(filedir);
+                    viewItem = new ListViewItem(converttotaglib_album(filedir));
 
-                    listView1.Items.Add(itm);
-                    itm.ImageIndex = 0;
+                    listView1.Items.Add(viewItem);
+                    viewItem.ImageIndex = 1;
 
                 }
             }
-            else if (name== "Videos")
+            else if (node == "Genre")
+            {
+                textBoxaddress.Text = "Library → Music → Genre";
+                listView1.Clear();
+                listView1.View = View.LargeIcon;
+                listView1.LargeImageList = imageList3;
+
+                listView1.Columns.Add("Genre", 50);
+                listView1.Columns.Add("Count", 50);
+                listView1.Columns.Add("Length", 50);
+
+                ListViewItem viewItem;
+                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
+                foreach (string fileName in fileEntries)
+                {
+                    string filedir;
+                    filedir = fileName;
+
+                    viewItem = new ListViewItem(converttotaglib_genre(filedir));
+
+                    listView1.Items.Add(viewItem);
+                    viewItem.ImageIndex = 2;
+
+                }
+            }
+            else if (node == "Videos")
             {
                 textBoxaddress.Text = "Library → Videos → All Videos";
                 listView1.Clear();
-                listView1.View = View.Details;
+                listView1.View = View.LargeIcon;
+                listView1.LargeImageList = imageList3;
+
+                ListViewItem viewItem;
+                string[] fileEntries = Directory.GetFiles(VideosLib, "*.mp4");
+                foreach (string fileName in fileEntries)
+                {
+                    string filedir;
+                    filedir = fileName;
+
+                    viewItem = new ListViewItem(converttotaglib_video(filedir));
+
+                    listView1.Items.Add(viewItem);
+                    viewItem.ImageIndex = 3;
+
+                }
+
+
 
             }
-            else if (name=="Pictures")
+            else if (node == "Pictures")
             {
+
                 textBoxaddress.Text = "Library → Pictures→ All Pictures";
                 listView1.Clear();
-                listView1.View = View.Details;
+                listView1.View = View.LargeIcon;
+                ImageList iml = new ImageList();
+                iml.ImageSize = new Size(90, 70);
+
+                listView1.LargeImageList = iml;
+                string[] fileEntries = Directory.GetFiles(PicturesLib, "*.jpg");
+                foreach (string fileName in fileEntries)
+                {
+                    Image image = Image.FromFile(fileName);
+                    string file = Path.GetFileName(fileName);
+                    iml.Images.Add(file, image);
+
+                    ListViewItem viewItem= new ListViewItem();
+                    viewItem.Text = file;
+
+                    viewItem.ImageKey = file;
+                    viewItem.SubItems.Add(fileName);
+
+                    listView1.Items.Add(viewItem);
+
+                }
 
             }
-            else if (name == "Playlists")
+            else if (node == "Playlists")
             {
                 textBoxaddress.Text = "Library → Playlists";
                 listView1.Clear();
                 listView1.View = View.Details;
 
             }
-            
+
 
 
         }
         string[] converttotaglib_music(string a)
         {
-            string[] returnvalue= new string[10];
+            string[] returnvalue = new string[10];
             TagLib.File mp3 = TagLib.File.Create(a);
 
             if (mp3.Tag.Title == null)
@@ -370,70 +537,91 @@ namespace Windows_MediaPlayer
             double size = new FileInfo(a).Length;
             size = size / 1024 / 1024;
             size = Math.Round(size, 1);
-            returnvalue[9] = size.ToString()+" MB";
+            returnvalue[9] = size.ToString() + " MB";
 
             return returnvalue;
 
         }
-        string now_is_at;
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+
+        string[] converttotaglib_artist(string a)
         {
-            now_is_at = e.Node.Name;
-            render(now_is_at);
-            backstack.Push(e.Node.Name);
-            forwardstack.Clear();
+            string[] returnvalue = new string[6];
+            TagLib.File mp3 = TagLib.File.Create(a);
 
-        }
-
-
-
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            if (backstack.Count>0)
+            if (mp3.Tag.FirstPerformer==null)
             {
-                forwardstack.Push(backstack.Peek());
-                string text = backstack.Pop();
-                render(text);
-
+                returnvalue[0] = "Updateting";
             }
+            else
+                returnvalue[0] = mp3.Tag.FirstPerformer;
+            returnvalue[5] = a;
+
+            return returnvalue;
 
         }
-
-        private void forwardButton_Click(object sender, EventArgs e)
+        string[] converttotaglib_genre(string a)
         {
-            if (forwardstack.Count > 0)
+            string[] returnvalue = new string[6];
+            TagLib.File mp3 = TagLib.File.Create(a);
+
+            if (mp3.Tag.FirstGenre == null)
             {
-                backstack.Push(forwardstack.Peek());
-                string text = forwardstack.Pop();
-                render(text);
-
+                returnvalue[0] = "Updating";
             }
+            else
+                returnvalue[0] = mp3.Tag.FirstGenre;
+            returnvalue[5] = a;
+
+            return returnvalue;
 
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        string[] converttotaglib_album(string a)
         {
-            splitContainer2.Panel2Collapsed = false;
-            button4.Text = "Save List";
-            button3.Text = "Clear List";
+            string[] returnvalue = new string[6];
+            TagLib.File mp3 = TagLib.File.Create(a);
+
+            if (mp3.Tag.Album == null)
+            {
+                returnvalue[0] = "Updating";
+            }
+            else
+                returnvalue[0] = mp3.Tag.Album;
+            returnvalue[5] = a;
+
+            return returnvalue;
+
         }
-        private void tabburnbt_Click(object sender, EventArgs e)
+
+        string[] converttotaglib_video(string a)
         {
+            string[] returnvalue = new string[6];
+            TagLib.File mp3 = TagLib.File.Create(a);
+            returnvalue[0] = Path.GetFileName(a);
 
-            splitContainer2.Panel2Collapsed = false;
-            button4.Text = "Start Burn";
+            returnvalue[5] = a;
+
+            return returnvalue;
+
         }
-
-
-
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
+            if (now_is_at == "Pictures")
+            {
+                ShowImage showImage = new ShowImage();
+                string imagefile = listView1.SelectedItems[0].SubItems[1].Text;
+                showImage.get_adress_image = imagefile;
+                showImage.StartPosition = FormStartPosition.CenterParent;
+                showImage.ShowDialog();
+                return;
+            }
+               
             WMPLib.IWMPMedia media;
             string plist = DateTime.UtcNow.ToString();
             var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist(plist);
             int count = listView1.SelectedItems.Count;
+            label_countsongs.Text = count + " items";
             playlist_listview.Clear();
             playlist_listview.Columns.Add("Song", 150);
             playlist_listview.Columns.Add("Artist", 100);
@@ -462,6 +650,20 @@ namespace Windows_MediaPlayer
 
             axWindowsMediaPlayer1.currentPlaylist = playlist;
 
+            
+            //
+        }
+
+        private void playlist_listview_DoubleClick(object sender, EventArgs e)
+        {
+            WMPLib.IWMPMedia media;
+            string plist = DateTime.UtcNow.ToString();
+            var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist(plist);
+            int index = playlist_listview.Items.IndexOf(playlist_listview.SelectedItems[0]);
+            media = axWindowsMediaPlayer1.currentPlaylist.Item[index];
+            playlist.appendItem(media);
+            axWindowsMediaPlayer1.Ctlcontrols.playItem(media);
+
         }
 
         private void listView1_KeyDown(object sender, KeyEventArgs e)
@@ -471,6 +673,14 @@ namespace Windows_MediaPlayer
                 EventArgs ea = (EventArgs)e;
                 this.listView1_DoubleClick(sender, ea);
 
+            }
+            if (e.KeyCode == Keys.A && e.Control)
+            {
+                listView1.MultiSelect = true;
+                foreach (ListViewItem item in listView1.Items)
+                {
+                    item.Selected = true;
+                }
             }
         }
         private void listView1_MouseClick(object sender, MouseEventArgs e)
@@ -495,7 +705,7 @@ namespace Windows_MediaPlayer
                         contextMenu.MenuItems.Add("Open file location");
 
 
-                        contextMenu.Show(listView1,e.Location);
+                        contextMenu.Show(listView1, e.Location);
                         contextMenu.MenuItems[0].Click += this.listView1_DoubleClick;
                         break;
                     }
@@ -503,6 +713,76 @@ namespace Windows_MediaPlayer
 
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((now_is_at == "Artists") || (now_is_at == "Album") || (now_is_at == "Genre"))
+                return;
+            if (comboBox1.SelectedIndex == 0)
+            {
+                listView1.View = View.Details;
+            }
+
+            if (comboBox1.SelectedIndex == 1)
+            {
+                listView1.View = View.LargeIcon;
+
+            }
+
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            splitContainer2.Panel2Collapsed = false;
+            button4.Text = "Save list";
+            button3.Text = "Clear list";
+            playlist_listview.Show();
+            textBox1.Text = "Unsave list";
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Italic);
+        }
+        private void tabburnbt_Click(object sender, EventArgs e)
+        {
+
+            splitContainer2.Panel2Collapsed = false;
+            button4.Text = "Start burn";
+            playlist_listview.Hide();
+            textBox1.Text = "Burn list";
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (button4.Text=="Save list")
+            {
+                TreeNode tn = new TreeNode(textBox1.Text);
+                tn.ImageIndex = 1;
+                tn.SelectedImageIndex = 1;
+                treeView1.Nodes[1].Nodes.Add(tn);
+                treeView1.ExpandAll();
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode== Keys.Enter)
+            {
+                KeyEventArgs ea = (KeyEventArgs)e;
+                this.button4_Click(sender, ea);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (button3.Text == "Clear list")
+            {
+                playlist_listview.Clear();
+            }
+        }
+
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+        }
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
 
@@ -563,30 +843,6 @@ namespace Windows_MediaPlayer
         {
 
         }
-
-        private void axWindowsMediaPlayer1_CurrentPlaylistChange(object sender, AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEvent e)
-        {
-
-        }
-
-        private void axWindowsMediaPlayer1_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
-        {
-
-            label1.Text = axWindowsMediaPlayer1.currentMedia.getItemInfo("Title");
-            var bmp = new Bitmap(Windows_MediaPlayer.Properties.Resources.if_083_Music_183211);
-            pictureBox1.BackgroundImage = (Image)bmp;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-        }
-
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
-            {
-                axWindowsMediaPlayer1.fullScreen = true;
-            }
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             splitContainer2.Panel2Collapsed = true;
@@ -596,84 +852,67 @@ namespace Windows_MediaPlayer
         {
             splitContainer2.Panel2Collapsed = false;
             button4.Text = "Start Sync";
+            textBox1.Text = "Sync list";
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void textBox1_MouseHover(object sender, EventArgs e)
+        {
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
+        }
+
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            textBox1.BorderStyle = BorderStyle.None;
+        }
+
+        #endregion
+
+
+        #region player
+        private void axWindowsMediaPlayer1_CurrentPlaylistChange(object sender, AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEvent e)
         {
 
         }
-
- 
-
-        private void helpbut_MouseHover(object sender, EventArgs e)
+        private void button1_Click_2(object sender, EventArgs e)
         {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(helpbut, "Help");
+            if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
+            {
+                axWindowsMediaPlayer1.fullScreen = true;
+            }
+            //
         }
-
-        private void backButton_MouseHover(object sender, EventArgs e)
+        private void axWindowsMediaPlayer1_MediaChange(object sender, AxWMPLib._WMPOCXEvents_MediaChangeEvent e)
         {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(backButton, "Back");
+            label1.Text = axWindowsMediaPlayer1.currentMedia.getItemInfo("Title");
+
+            if (now_is_at =="Videos")
+            {
+                var bmp = new Bitmap(Windows_MediaPlayer.Properties.Resources.Videos);
+                pictureBox1.BackgroundImage = (Image)bmp;
+                pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+
+            }
+            else
+            {
+                var bmp = new Bitmap(Windows_MediaPlayer.Properties.Resources.if_083_Music_183211);
+                pictureBox1.BackgroundImage = (Image)bmp;
+                pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            }
         }
-
-        private void forwardButton_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(forwardButton, "Forward");
-        }
-
-        private void tabplaybt_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(tabplaybt,"Create playlist, manage content, and share your music");
-
-        }
-
-        private void tabburnbt_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(tabburnbt, "Burn files to discs");
-
-
-        }
-        private void tabsyncbt_MouseHover(object sender, EventArgs e)
-        {
-            ToolTip tt = new ToolTip();
-            tt.SetToolTip(tabsyncbt, "Sync content to and from your potable devices");
-
-        }
-
-        private void helpbut_Click(object sender, EventArgs e)
-        {
-            string url;
-            url = "https://www.google.com.vn/";
-            System.Diagnostics.Process.Start(url);
-        }
-
-        private void listView1_DrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
-        {
-            e.Graphics.FillRectangle(Brushes.AliceBlue, e.Bounds);
-            e.DrawText();
-        }
-
-        private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
-        {
-            e.DrawDefault = true;
-        }
-
 
         bool loop = false;
         bool shuffle = false;
+
         private void button5_Click(object sender, EventArgs e)
         {
-            if (shuffle==true)
+            if (shuffle == true)
             {
                 shuffle = false;
                 axWindowsMediaPlayer1.settings.setMode("shuffle", true);
             }
-            else if (shuffle==false)
+            else if (shuffle == false)
             {
                 shuffle = true;
                 axWindowsMediaPlayer1.settings.setMode("shuffle", false);
@@ -724,7 +963,7 @@ namespace Windows_MediaPlayer
         private void button1_MouseHover(object sender, EventArgs e)
         {
             ToolTip tt = new ToolTip();
-            tt.SetToolTip(button1, "Enter full screen mode");
+            tt.SetToolTip(button1, "Enter full screen mode (F12)");
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -734,7 +973,7 @@ namespace Windows_MediaPlayer
             var yourStr = string.Format("{00}:{1:00}",
                             (int)timespan.TotalMinutes,
                             timespan.Seconds);
-            labeltimeremain.Text =  yourStr.ToString();
+            labeltimeremain.Text = yourStr.ToString();
 
         }
 
@@ -754,6 +993,13 @@ namespace Windows_MediaPlayer
                 timer1.Stop();
 
             }
+            if (now_is_at == "Videos")
+            {
+                if (axWindowsMediaPlayer1.playState == WMPLib.WMPPlayState.wmppsPlaying)
+                {
+                    axWindowsMediaPlayer1.fullScreen = true;
+                }
+            }
         }
 
         private void labeltimeremain_MouseHover(object sender, EventArgs e)
@@ -761,5 +1007,19 @@ namespace Windows_MediaPlayer
             ToolTip tt = new ToolTip();
             tt.SetToolTip(labeltimeremain, "Time remaining");
         }
+
+
+
+
+
+
+
+
+
+
+
+        #endregion
+
+  
     }
 }

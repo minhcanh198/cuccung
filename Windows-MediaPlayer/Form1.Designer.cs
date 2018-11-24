@@ -30,23 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Library");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Playlists", 1, 1);
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Artists", 6, 6);
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Album", 5, 5);
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Genre", 7, 7);
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Music", 2, 2, new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Videos", 3, 3);
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Pictures", 4, 4);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Library");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Playlists", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Artists", 6, 6);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Album", 5, 5);
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Genre", 7, 7);
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Music", 2, 2, new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Videos", 3, 3);
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Pictures", 4, 4);
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.label_countsongs = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.playlist_listview = new System.Windows.Forms.ListView();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -79,6 +81,7 @@
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.helpbut = new System.Windows.Forms.Button();
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labeltimeremain = new System.Windows.Forms.Label();
@@ -89,7 +92,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.backButton = new Windows_MediaPlayer.RoundButton();
             this.forwardButton = new Windows_MediaPlayer.RoundButton();
-            this.helpbut = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -110,10 +112,10 @@
             this.axWindowsMediaPlayer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 394);
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 402);
             this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
             this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(706, 60);
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(805, 60);
             this.axWindowsMediaPlayer1.TabIndex = 0;
             this.axWindowsMediaPlayer1.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.axWindowsMediaPlayer1_PlayStateChange);
             this.axWindowsMediaPlayer1.CurrentPlaylistChange += new AxWMPLib._WMPOCXEvents_CurrentPlaylistChangeEventHandler(this.axWindowsMediaPlayer1_CurrentPlaylistChange);
@@ -138,8 +140,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(706, 346);
-            this.splitContainer1.SplitterDistance = 133;
+            this.splitContainer1.Size = new System.Drawing.Size(805, 354);
+            this.splitContainer1.SplitterDistance = 151;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 4;
             // 
@@ -152,43 +154,43 @@
             this.treeView1.ImageList = this.imageList1;
             this.treeView1.Location = new System.Drawing.Point(0, 16);
             this.treeView1.Name = "treeView1";
-            treeNode9.ImageIndex = 0;
-            treeNode9.Name = "Library";
-            treeNode9.Text = "Library";
-            treeNode10.ImageIndex = 1;
-            treeNode10.Name = "Playlists";
-            treeNode10.SelectedImageIndex = 1;
-            treeNode10.Text = "Playlists";
-            treeNode11.ImageIndex = 6;
-            treeNode11.Name = "Artists";
-            treeNode11.SelectedImageIndex = 6;
-            treeNode11.Text = "Artists";
-            treeNode12.ImageIndex = 5;
-            treeNode12.Name = "Album";
-            treeNode12.SelectedImageIndex = 5;
-            treeNode12.Text = "Album";
-            treeNode13.ImageIndex = 7;
-            treeNode13.Name = "Genre";
-            treeNode13.SelectedImageIndex = 7;
-            treeNode13.Text = "Genre";
-            treeNode14.ImageIndex = 2;
-            treeNode14.Name = "Music";
-            treeNode14.SelectedImageIndex = 2;
-            treeNode14.Text = "Music";
-            treeNode15.ImageIndex = 3;
-            treeNode15.Name = "Videos";
-            treeNode15.SelectedImageIndex = 3;
-            treeNode15.Text = "Videos";
-            treeNode16.ImageIndex = 4;
-            treeNode16.Name = "Pictures";
-            treeNode16.SelectedImageIndex = 4;
-            treeNode16.Text = "Pictures";
+            treeNode1.ImageIndex = 0;
+            treeNode1.Name = "Library";
+            treeNode1.Text = "Library";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "Playlists";
+            treeNode2.SelectedImageIndex = 1;
+            treeNode2.Text = "Playlists";
+            treeNode3.ImageIndex = 6;
+            treeNode3.Name = "Artists";
+            treeNode3.SelectedImageIndex = 6;
+            treeNode3.Text = "Artists";
+            treeNode4.ImageIndex = 5;
+            treeNode4.Name = "Album";
+            treeNode4.SelectedImageIndex = 5;
+            treeNode4.Text = "Album";
+            treeNode5.ImageIndex = 7;
+            treeNode5.Name = "Genre";
+            treeNode5.SelectedImageIndex = 7;
+            treeNode5.Text = "Genre";
+            treeNode6.ImageIndex = 2;
+            treeNode6.Name = "Music";
+            treeNode6.SelectedImageIndex = 2;
+            treeNode6.Text = "Music";
+            treeNode7.ImageIndex = 3;
+            treeNode7.Name = "Videos";
+            treeNode7.SelectedImageIndex = 3;
+            treeNode7.Text = "Videos";
+            treeNode8.ImageIndex = 4;
+            treeNode8.Name = "Pictures";
+            treeNode8.SelectedImageIndex = 4;
+            treeNode8.Text = "Pictures";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10,
-            treeNode14,
-            treeNode15,
-            treeNode16});
+            treeNode1,
+            treeNode2,
+            treeNode6,
+            treeNode7,
+            treeNode8});
             this.treeView1.SelectedImageIndex = 0;
             this.treeView1.ShowLines = false;
             this.treeView1.Size = new System.Drawing.Size(150, 324);
@@ -223,13 +225,15 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.AliceBlue;
+            this.splitContainer2.Panel2.Controls.Add(this.label_countsongs);
+            this.splitContainer2.Panel2.Controls.Add(this.textBox1);
             this.splitContainer2.Panel2.Controls.Add(this.playlist_listview);
             this.splitContainer2.Panel2.Controls.Add(this.button4);
             this.splitContainer2.Panel2.Controls.Add(this.button3);
             this.splitContainer2.Panel2.Controls.Add(this.button2);
             this.splitContainer2.Panel2MinSize = 200;
-            this.splitContainer2.Size = new System.Drawing.Size(570, 344);
-            this.splitContainer2.SplitterDistance = 358;
+            this.splitContainer2.Size = new System.Drawing.Size(651, 352);
+            this.splitContainer2.SplitterDistance = 408;
             this.splitContainer2.TabIndex = 1;
             // 
             // listView1
@@ -242,7 +246,7 @@
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Name = "listView1";
             this.listView1.OwnerDraw = true;
-            this.listView1.Size = new System.Drawing.Size(358, 344);
+            this.listView1.Size = new System.Drawing.Size(408, 352);
             this.listView1.TabIndex = 1;
             this.listView1.TileSize = new System.Drawing.Size(1, 1);
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -252,6 +256,34 @@
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
+            // 
+            // label_countsongs
+            // 
+            this.label_countsongs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label_countsongs.AutoSize = true;
+            this.label_countsongs.Location = new System.Drawing.Point(10, 335);
+            this.label_countsongs.Name = "label_countsongs";
+            this.label_countsongs.Size = new System.Drawing.Size(40, 13);
+            this.label_countsongs.TabIndex = 5;
+            this.label_countsongs.Text = "0 items";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.BackColor = System.Drawing.Color.AliceBlue;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(7, 64);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(220, 13);
+            this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "Unsave list";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
+            this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
             // 
             // playlist_listview
             // 
@@ -263,35 +295,44 @@
             this.playlist_listview.FullRowSelect = true;
             this.playlist_listview.Location = new System.Drawing.Point(2, 90);
             this.playlist_listview.Name = "playlist_listview";
-            this.playlist_listview.Size = new System.Drawing.Size(203, 233);
+            this.playlist_listview.Size = new System.Drawing.Size(234, 241);
             this.playlist_listview.TabIndex = 3;
             this.playlist_listview.UseCompatibleStateImageBehavior = false;
+            this.playlist_listview.DoubleClick += new System.EventHandler(this.playlist_listview_DoubleClick);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.AliceBlue;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(7, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(67, 23);
             this.button4.TabIndex = 2;
             this.button4.Text = "Save";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.AliceBlue;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(80, 3);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(73, 23);
             this.button3.TabIndex = 1;
             this.button3.Text = "Clear";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.AliceBlue;
-            this.button2.Location = new System.Drawing.Point(165, 3);
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(196, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(40, 23);
             this.button2.TabIndex = 0;
@@ -301,6 +342,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.AliceBlue;
             this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -315,7 +357,7 @@
             // 
             // organizeToolStripMenuItem
             // 
-            this.organizeToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
+            this.organizeToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.organizeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.manageLibraryToolStripMenuItem,
             this.applyMediaInformationChangesToolStripMenuItem,
@@ -340,6 +382,7 @@
             // 
             // musicToolStripMenuItem
             // 
+            this.musicToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.musicToolStripMenuItem.Name = "musicToolStripMenuItem";
             this.musicToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.musicToolStripMenuItem.Text = "Music";
@@ -395,7 +438,7 @@
             // 
             // streamToolStripMenuItem
             // 
-            this.streamToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
+            this.streamToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allowInternetAccessToHomeMediaToolStripMenuItem,
             this.toolStripSeparator3,
@@ -423,7 +466,7 @@
             // 
             // createPlaylistToolStripMenuItem
             // 
-            this.createPlaylistToolStripMenuItem.BackColor = System.Drawing.Color.Azure;
+            this.createPlaylistToolStripMenuItem.BackColor = System.Drawing.Color.AliceBlue;
             this.createPlaylistToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createPlaylistToolStripMenuItem1,
             this.createAutoPlaylistToolStripMenuItem});
@@ -436,6 +479,7 @@
             this.createPlaylistToolStripMenuItem1.Name = "createPlaylistToolStripMenuItem1";
             this.createPlaylistToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
             this.createPlaylistToolStripMenuItem1.Text = "Create playlist";
+            this.createPlaylistToolStripMenuItem1.Click += new System.EventHandler(this.createPlaylistToolStripMenuItem1_Click);
             // 
             // createAutoPlaylistToolStripMenuItem
             // 
@@ -447,7 +491,9 @@
             // 
             this.tabplaybt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tabplaybt.BackColor = System.Drawing.Color.AliceBlue;
-            this.tabplaybt.Location = new System.Drawing.Point(475, 10);
+            this.tabplaybt.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.tabplaybt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tabplaybt.Location = new System.Drawing.Point(574, 10);
             this.tabplaybt.Name = "tabplaybt";
             this.tabplaybt.Size = new System.Drawing.Size(75, 47);
             this.tabplaybt.TabIndex = 1;
@@ -461,7 +507,9 @@
             // 
             this.tabburnbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tabburnbt.BackColor = System.Drawing.Color.AliceBlue;
-            this.tabburnbt.Location = new System.Drawing.Point(555, 10);
+            this.tabburnbt.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.tabburnbt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tabburnbt.Location = new System.Drawing.Point(654, 10);
             this.tabburnbt.Name = "tabburnbt";
             this.tabburnbt.Size = new System.Drawing.Size(75, 47);
             this.tabburnbt.TabIndex = 9;
@@ -475,7 +523,9 @@
             // 
             this.tabsyncbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsyncbt.BackColor = System.Drawing.Color.AliceBlue;
-            this.tabsyncbt.Location = new System.Drawing.Point(635, 10);
+            this.tabsyncbt.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.tabsyncbt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tabsyncbt.Location = new System.Drawing.Point(734, 10);
             this.tabsyncbt.Name = "tabsyncbt";
             this.tabsyncbt.Size = new System.Drawing.Size(71, 47);
             this.tabsyncbt.TabIndex = 10;
@@ -489,13 +539,14 @@
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox1.BackColor = System.Drawing.Color.AliceBlue;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Details",
             "Large icon"});
-            this.comboBox1.Location = new System.Drawing.Point(492, 5);
+            this.comboBox1.Location = new System.Drawing.Point(573, 5);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(57, 21);
+            this.comboBox1.Size = new System.Drawing.Size(75, 21);
             this.comboBox1.TabIndex = 14;
             this.comboBox1.Text = "View";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -522,8 +573,9 @@
             // 
             this.textBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxSearch.BackColor = System.Drawing.Color.AliceBlue;
+            this.textBoxSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxSearch.Location = new System.Drawing.Point(564, 5);
+            this.textBoxSearch.Location = new System.Drawing.Point(663, 5);
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(100, 20);
             this.textBoxSearch.TabIndex = 16;
@@ -536,7 +588,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(9, 8);
+            this.label1.Location = new System.Drawing.Point(9, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 17;
@@ -551,14 +603,35 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(1, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(704, 29);
+            this.panel1.Size = new System.Drawing.Size(803, 29);
             this.panel1.TabIndex = 20;
+            // 
+            // helpbut
+            // 
+            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
+            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
+            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.helpbut.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.helpbut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpbut.ImageKey = "(none)";
+            this.helpbut.ImageList = this.imageList1;
+            this.helpbut.Location = new System.Drawing.Point(770, 3);
+            this.helpbut.Name = "helpbut";
+            this.helpbut.Size = new System.Drawing.Size(24, 23);
+            this.helpbut.TabIndex = 17;
+            this.helpbut.UseVisualStyleBackColor = false;
+            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
+            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
             // 
             // imageList3
             // 
             this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
             this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList3.Images.SetKeyName(0, "Artists.png");
+            this.imageList3.Images.SetKeyName(1, "Albums.png");
+            this.imageList3.Images.SetKeyName(2, "Genre.png");
+            this.imageList3.Images.SetKeyName(3, "Videos.png");
             // 
             // timer1
             // 
@@ -570,7 +643,7 @@
             this.labeltimeremain.AutoSize = true;
             this.labeltimeremain.BackColor = System.Drawing.Color.WhiteSmoke;
             this.labeltimeremain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labeltimeremain.Location = new System.Drawing.Point(280, 427);
+            this.labeltimeremain.Location = new System.Drawing.Point(280, 435);
             this.labeltimeremain.Name = "labeltimeremain";
             this.labeltimeremain.Size = new System.Drawing.Size(0, 15);
             this.labeltimeremain.TabIndex = 26;
@@ -582,16 +655,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Location = new System.Drawing.Point(347, 418);
+            this.panel2.Location = new System.Drawing.Point(347, 430);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(324, 32);
+            this.panel2.Size = new System.Drawing.Size(417, 28);
             this.panel2.TabIndex = 27;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pictureBox1.Location = new System.Drawing.Point(313, 422);
+            this.pictureBox1.Location = new System.Drawing.Point(313, 430);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(40, 28);
             this.pictureBox1.TabIndex = 18;
@@ -603,9 +676,11 @@
             this.button6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button6.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.repeatbut;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.Location = new System.Drawing.Point(251, 422);
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(251, 432);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(23, 23);
+            this.button6.Size = new System.Drawing.Size(22, 22);
             this.button6.TabIndex = 24;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
@@ -617,9 +692,11 @@
             this.button5.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(217, 422);
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(217, 432);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(23, 23);
+            this.button5.Size = new System.Drawing.Size(22, 22);
             this.button5.TabIndex = 23;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -630,9 +707,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::Windows_MediaPlayer.Properties.Resources.fullscreen;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.Location = new System.Drawing.Point(670, 422);
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(769, 432);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
+            this.button1.Size = new System.Drawing.Size(22, 22);
             this.button1.TabIndex = 18;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
@@ -666,29 +745,13 @@
             this.forwardButton.MouseHover += new System.EventHandler(this.forwardButton_MouseHover);
             this.forwardButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButton2_MouseMove);
             // 
-            // helpbut
-            // 
-            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
-            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
-            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.helpbut.ImageKey = "(none)";
-            this.helpbut.ImageList = this.imageList1;
-            this.helpbut.Location = new System.Drawing.Point(671, 3);
-            this.helpbut.Name = "helpbut";
-            this.helpbut.Size = new System.Drawing.Size(24, 23);
-            this.helpbut.TabIndex = 17;
-            this.helpbut.UseVisualStyleBackColor = false;
-            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
-            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(706, 454);
+            this.ClientSize = new System.Drawing.Size(805, 462);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.labeltimeremain);
@@ -706,10 +769,12 @@
             this.Controls.Add(this.tabburnbt);
             this.Controls.Add(this.tabsyncbt);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Windows Media Player";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -717,6 +782,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -782,6 +848,8 @@
         private System.Windows.Forms.Label labeltimeremain;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label_countsongs;
     }
 }
 
