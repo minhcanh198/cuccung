@@ -57,10 +57,25 @@ namespace Windows_MediaPlayer
             {
                 this.button1_Click_2(sender, e);
             }
-            if (e.KeyCode ==Keys.O && e.Control)
+            if (e.KeyCode == Keys.O && e.Control)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Multiselect = true;
+                openFileDialog.Filter = "Media file (*.mp3; *.mp4)|*.mp3;*.mp4";
+                WMPLib.IWMPMedia wMP;
+                string plist = DateTime.UtcNow.ToString();
+                var playlist = axWindowsMediaPlayer1.playlistCollection.newPlaylist(plist);
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (string fn in openFileDialog.FileNames)
+                    {
+                        wMP = axWindowsMediaPlayer1.newMedia(fn);
+                        playlist.appendItem(wMP);
+
+                    }
+                    axWindowsMediaPlayer1.currentPlaylist = playlist;
+                }
 
             }
             if (e.KeyCode == Keys.Escape)
@@ -550,7 +565,7 @@ namespace Windows_MediaPlayer
 
             if (mp3.Tag.FirstPerformer==null)
             {
-                returnvalue[0] = "Updateting";
+                returnvalue[0] = "Updating";
             }
             else
                 returnvalue[0] = mp3.Tag.FirstPerformer;
@@ -1007,15 +1022,6 @@ namespace Windows_MediaPlayer
             ToolTip tt = new ToolTip();
             tt.SetToolTip(labeltimeremain, "Time remaining");
         }
-
-
-
-
-
-
-
-
-
 
 
         #endregion
