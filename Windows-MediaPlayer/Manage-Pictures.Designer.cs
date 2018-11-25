@@ -139,10 +139,11 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Learn more about library";
             // 
-            // Manage_Videos
+            // Manage_Pictures
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(612, 473);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cancelbtn);
@@ -154,7 +155,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Manage_Videos";
+            this.Name = "Manage_Pictures";
             this.Text = "Manage_Videos";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
