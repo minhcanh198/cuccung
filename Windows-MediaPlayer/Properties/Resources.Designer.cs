@@ -63,6 +63,16 @@ namespace Windows_MediaPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cd_music {
+            get {
+                object obj = ResourceManager.GetObject("cd_music", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fullscreen {
             get {
                 object obj = ResourceManager.GetObject("fullscreen", resourceCulture);
@@ -96,6 +106,26 @@ namespace Windows_MediaPlayer.Properties {
         internal static System.Drawing.Bitmap media_shuffle {
             get {
                 object obj = ResourceManager.GetObject("media_shuffle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Mobile_connect {
+            get {
+                object obj = ResourceManager.GetObject("Mobile_connect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Playlist {
+            get {
+                object obj = ResourceManager.GetObject("Playlist", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

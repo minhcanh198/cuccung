@@ -81,17 +81,26 @@
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.helpbut = new System.Windows.Forms.Button();
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.labeltimeremain = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.helpbut = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.backButton = new Windows_MediaPlayer.RoundButton();
             this.forwardButton = new Windows_MediaPlayer.RoundButton();
+            this.titleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.albumArtistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.albumsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.releaseDateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ratingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -105,6 +114,7 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // axWindowsMediaPlayer1
@@ -196,6 +206,7 @@
             this.treeView1.Size = new System.Drawing.Size(150, 324);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeView1_MouseClick);
             // 
             // imageList1
             // 
@@ -225,6 +236,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.AliceBlue;
+            this.splitContainer2.Panel2.Controls.Add(this.label2);
+            this.splitContainer2.Panel2.Controls.Add(this.pictureBox2);
             this.splitContainer2.Panel2.Controls.Add(this.label_countsongs);
             this.splitContainer2.Panel2.Controls.Add(this.textBox1);
             this.splitContainer2.Panel2.Controls.Add(this.playlist_listview);
@@ -253,6 +266,7 @@
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.listView1_DrawColumnHeader);
             this.listView1.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.listView1_DrawItem);
+            this.listView1.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.listView1_ItemSelectionChanged);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyDown);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
@@ -274,11 +288,10 @@
             this.textBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(7, 64);
+            this.textBox1.Location = new System.Drawing.Point(7, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(220, 13);
             this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Unsave list";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
@@ -293,9 +306,9 @@
             this.playlist_listview.BackColor = System.Drawing.Color.AliceBlue;
             this.playlist_listview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.playlist_listview.FullRowSelect = true;
-            this.playlist_listview.Location = new System.Drawing.Point(2, 90);
+            this.playlist_listview.Location = new System.Drawing.Point(2, 113);
             this.playlist_listview.Name = "playlist_listview";
-            this.playlist_listview.Size = new System.Drawing.Size(234, 241);
+            this.playlist_listview.Size = new System.Drawing.Size(234, 218);
             this.playlist_listview.TabIndex = 3;
             this.playlist_listview.UseCompatibleStateImageBehavior = false;
             this.playlist_listview.DoubleClick += new System.EventHandler(this.playlist_listview_DoubleClick);
@@ -351,7 +364,7 @@
             this.createPlaylistToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(1, 37);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(223, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(343, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -421,6 +434,13 @@
             // 
             // sortByToolStripMenuItem
             // 
+            this.sortByToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.titleToolStripMenuItem,
+            this.albumArtistToolStripMenuItem,
+            this.albumsToolStripMenuItem,
+            this.releaseDateToolStripMenuItem,
+            this.ratingToolStripMenuItem,
+            this.fileNameToolStripMenuItem});
             this.sortByToolStripMenuItem.Name = "sortByToolStripMenuItem";
             this.sortByToolStripMenuItem.Size = new System.Drawing.Size(254, 22);
             this.sortByToolStripMenuItem.Text = "Sort by";
@@ -606,24 +626,6 @@
             this.panel1.Size = new System.Drawing.Size(803, 29);
             this.panel1.TabIndex = 20;
             // 
-            // helpbut
-            // 
-            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
-            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
-            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.helpbut.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
-            this.helpbut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.helpbut.ImageKey = "(none)";
-            this.helpbut.ImageList = this.imageList1;
-            this.helpbut.Location = new System.Drawing.Point(770, 3);
-            this.helpbut.Name = "helpbut";
-            this.helpbut.Size = new System.Drawing.Size(24, 23);
-            this.helpbut.TabIndex = 17;
-            this.helpbut.UseVisualStyleBackColor = false;
-            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
-            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
-            // 
             // imageList3
             // 
             this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
@@ -654,11 +656,20 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(347, 430);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(417, 28);
             this.panel2.TabIndex = 27;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(84, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 7;
             // 
             // pictureBox1
             // 
@@ -680,7 +691,7 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Location = new System.Drawing.Point(251, 432);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(22, 22);
+            this.button6.Size = new System.Drawing.Size(21, 21);
             this.button6.TabIndex = 24;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
@@ -696,7 +707,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Location = new System.Drawing.Point(217, 432);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(22, 22);
+            this.button5.Size = new System.Drawing.Size(21, 21);
             this.button5.TabIndex = 23;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -711,11 +722,46 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(769, 432);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(22, 22);
+            this.button1.Size = new System.Drawing.Size(21, 21);
             this.button1.TabIndex = 18;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_2);
             this.button1.MouseHover += new System.EventHandler(this.button1_MouseHover);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(15, 35);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(59, 56);
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // helpbut
+            // 
+            this.helpbut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpbut.BackColor = System.Drawing.Color.AliceBlue;
+            this.helpbut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("helpbut.BackgroundImage")));
+            this.helpbut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.helpbut.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.helpbut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.helpbut.ImageKey = "(none)";
+            this.helpbut.ImageList = this.imageList1;
+            this.helpbut.Location = new System.Drawing.Point(770, 3);
+            this.helpbut.Name = "helpbut";
+            this.helpbut.Size = new System.Drawing.Size(24, 23);
+            this.helpbut.TabIndex = 17;
+            this.helpbut.UseVisualStyleBackColor = false;
+            this.helpbut.Click += new System.EventHandler(this.helpbut_Click);
+            this.helpbut.MouseHover += new System.EventHandler(this.helpbut_MouseHover);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(330, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 18;
             // 
             // backButton
             // 
@@ -744,6 +790,42 @@
             this.forwardButton.MouseLeave += new System.EventHandler(this.roundButton2_MouseLeave);
             this.forwardButton.MouseHover += new System.EventHandler(this.forwardButton_MouseHover);
             this.forwardButton.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButton2_MouseMove);
+            // 
+            // titleToolStripMenuItem
+            // 
+            this.titleToolStripMenuItem.Name = "titleToolStripMenuItem";
+            this.titleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.titleToolStripMenuItem.Text = "Title";
+            // 
+            // albumArtistToolStripMenuItem
+            // 
+            this.albumArtistToolStripMenuItem.Name = "albumArtistToolStripMenuItem";
+            this.albumArtistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.albumArtistToolStripMenuItem.Text = "Album artist";
+            // 
+            // albumsToolStripMenuItem
+            // 
+            this.albumsToolStripMenuItem.Name = "albumsToolStripMenuItem";
+            this.albumsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.albumsToolStripMenuItem.Text = "Albums";
+            // 
+            // releaseDateToolStripMenuItem
+            // 
+            this.releaseDateToolStripMenuItem.Name = "releaseDateToolStripMenuItem";
+            this.releaseDateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.releaseDateToolStripMenuItem.Text = "Release date";
+            // 
+            // ratingToolStripMenuItem
+            // 
+            this.ratingToolStripMenuItem.Name = "ratingToolStripMenuItem";
+            this.ratingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ratingToolStripMenuItem.Text = "Rating";
+            // 
+            // fileNameToolStripMenuItem
+            // 
+            this.fileNameToolStripMenuItem.Name = "fileNameToolStripMenuItem";
+            this.fileNameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fileNameToolStripMenuItem.Text = "File name";
             // 
             // Form1
             // 
@@ -792,6 +874,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -850,6 +933,15 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label_countsongs;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem titleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem albumArtistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem albumsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem releaseDateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ratingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileNameToolStripMenuItem;
     }
 }
 

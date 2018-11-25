@@ -178,5 +178,14 @@
   <ItemGroup>
     <None Include="Resources\Videos.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Playlist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mobile_connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cd_music.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

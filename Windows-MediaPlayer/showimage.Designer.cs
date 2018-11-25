@@ -56,9 +56,8 @@
             this.label1.ForeColor = System.Drawing.Color.AliceBlue;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
             // 
             // ShowImage
             // 
@@ -69,7 +68,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ShowImage";
-            this.Text = "showimage";
+            this.Text = "Show image";
             this.Load += new System.EventHandler(this.ShowImage_Load);
             this.MouseHover += new System.EventHandler(this.ShowImage_MouseHover);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -13,6 +13,7 @@ using WMPLib;
 using System.Collections;
 using System.IO;
 using TagLib;
+using System.Diagnostics;
 
 namespace Windows_MediaPlayer
 {
@@ -20,6 +21,7 @@ namespace Windows_MediaPlayer
     public partial class Form1 : Form
     {
         private ListViewColumnSorter lvwColumnSorter;
+
         #region Form1
         public Form1()
         {
@@ -38,11 +40,15 @@ namespace Windows_MediaPlayer
             this.listView1.ForeColor = Color.Black;
             playlist_listview.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
         }
+
+
         Stack<string> backstack = new Stack<string>();
         Stack<string> forwardstack = new Stack<string>();
         string MusicLib;
         string VideosLib;
         string PicturesLib;
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             timer1.Interval = 1000;
@@ -51,6 +57,7 @@ namespace Windows_MediaPlayer
             textBoxaddress.Text = "Library";
             splitContainer2.Panel2Collapsed=true;
         }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F12)
@@ -84,6 +91,10 @@ namespace Windows_MediaPlayer
                 {
                     axWindowsMediaPlayer1.fullScreen = false;
                 }
+            }
+            if (e.KeyCode== Keys.Delete)
+            {
+                this.delete_selected_items(sender,e);
             }
         }
 
@@ -280,7 +291,26 @@ namespace Windows_MediaPlayer
 
         }
 
+        private void treeView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        ContextMenu context = new ContextMenu();
+                        context.MenuItems.Add("Delete");
+                        context.MenuItems[0].Click += this.delete_treenode;
+                        context.Show(treeView1, e.Location);
+                        break;
+                    }
+            }
+        }
 
+
+        private void delete_treenode( Object sender, EventArgs eventArgs)
+        {
+            treeView1.SelectedNode.Remove();
+        }
 
         private void backButton_Click(object sender, EventArgs e)
         {
@@ -469,6 +499,16 @@ namespace Windows_MediaPlayer
                 listView1.Clear();
                 listView1.View = View.LargeIcon;
                 listView1.LargeImageList = imageList3;
+                listView1.SmallImageList = imageList3;
+
+                listView1.Columns.Add("Title", 400);
+                listView1.Columns.Add("Length", 100);
+                listView1.Columns.Add("Size", 100);
+                listView1.Columns.Add("Release year", 100);
+                listView1.Columns.Add("Genre", 100);
+                listView1.Columns.Add("Path", 0);
+                listView1.Columns.Add("", 400);
+
 
                 ListViewItem viewItem;
                 string[] fileEntries = Directory.GetFiles(VideosLib, "*.mp4");
@@ -493,6 +533,7 @@ namespace Windows_MediaPlayer
                 textBoxaddress.Text = "Library → Pictures→ All Pictures";
                 listView1.Clear();
                 listView1.View = View.LargeIcon;
+                listView1.Columns.Add("Images");
                 ImageList iml = new ImageList();
                 iml.ImageSize = new Size(90, 70);
 
@@ -541,7 +582,7 @@ namespace Windows_MediaPlayer
             returnvalue[1] = mp3.Tag.FirstPerformer;
             returnvalue[2] = mp3.Properties.Duration.ToString().Split('.')[0];
             if (mp3.Tag.Year.ToString() == "0")
-                returnvalue[3] = "N/A";
+                returnvalue[3] = "Unknown";
             else
                 returnvalue[3] = mp3.Tag.Year.ToString();
             returnvalue[4] = Path.GetFileName(a);
@@ -565,7 +606,7 @@ namespace Windows_MediaPlayer
 
             if (mp3.Tag.FirstPerformer==null)
             {
-                returnvalue[0] = "Updating";
+                returnvalue[0] = "Unknown";
             }
             else
                 returnvalue[0] = mp3.Tag.FirstPerformer;
@@ -581,7 +622,7 @@ namespace Windows_MediaPlayer
 
             if (mp3.Tag.FirstGenre == null)
             {
-                returnvalue[0] = "Updating";
+                returnvalue[0] = "Unknown";
             }
             else
                 returnvalue[0] = mp3.Tag.FirstGenre;
@@ -598,7 +639,7 @@ namespace Windows_MediaPlayer
 
             if (mp3.Tag.Album == null)
             {
-                returnvalue[0] = "Updating";
+                returnvalue[0] = "Unknown";
             }
             else
                 returnvalue[0] = mp3.Tag.Album;
@@ -613,6 +654,16 @@ namespace Windows_MediaPlayer
             string[] returnvalue = new string[6];
             TagLib.File mp3 = TagLib.File.Create(a);
             returnvalue[0] = Path.GetFileName(a);
+            returnvalue[1] = mp3.Properties.Duration.ToString().Split('.')[0];
+
+            double size = new FileInfo(a).Length;
+            size = size / 1024 / 1024;
+            size = Math.Round(size, 1);
+            returnvalue[2] = size.ToString() + " MB";
+            if (mp3.Tag.Year.ToString() == "0")
+                returnvalue[3] = "Unknown";
+            else
+                returnvalue[3] = mp3.Tag.Year.ToString();
 
             returnvalue[5] = a;
 
@@ -722,15 +773,65 @@ namespace Windows_MediaPlayer
 
                         contextMenu.Show(listView1, e.Location);
                         contextMenu.MenuItems[0].Click += this.listView1_DoubleClick;
+                        contextMenu.MenuItems[1].Click += this.play_all_meida;
+                        contextMenu.MenuItems[8].Click += this.delete_selected_items;
+                        contextMenu.MenuItems[12].Click += this.open_file_location;
                         break;
                     }
             }
+            //
 
+        }
+
+        private void delete_selected_items(Object sender, EventArgs e)
+        {
+            foreach (ListViewItem eachItem in listView1.SelectedItems)
+            {
+                listView1.Items.Remove(eachItem);
+            }
+        }
+        private void play_all_meida(Object sender, EventArgs eventArgs)
+        {
+            foreach (ListViewItem eachItem in listView1.Items)
+            {
+                eachItem.Selected = true;
+            }
+            this.listView1_DoubleClick(sender,eventArgs);
+
+        }
+        private void open_file_location ( Object sender, EventArgs eventArgs)
+        {
+            string filePath;
+            if (now_is_at == "Pictures")
+
+                filePath = listView1.SelectedItems[0].SubItems[1].Text;
+            else
+                filePath = listView1.SelectedItems[0].SubItems[5].Text;
+
+            if (System.IO.File.Exists(filePath))
+            {
+                Process.Start("explorer.exe", "/select, " + filePath);
+            }
+        }
+
+        private void listView1_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            label3.Text = listView1.SelectedItems.Count.ToString() + " items selected";
+            label3.ForeColor = Color.RoyalBlue;
+            label3.Show();
+            var t = new Timer();
+            t.Interval = 5000; 
+            t.Tick += (s, ee) =>
+            {
+                label3.Hide();
+                t.Stop();
+            };
+            t.Start();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((now_is_at == "Artists") || (now_is_at == "Album") || (now_is_at == "Genre"))
+            if ((now_is_at == "Artists") || (now_is_at == "Album") || (now_is_at == "Genre")|| (now_is_at=="Pictures"))
                 return;
             if (comboBox1.SelectedIndex == 0)
             {
@@ -751,8 +852,15 @@ namespace Windows_MediaPlayer
             button4.Text = "Save list";
             button3.Text = "Clear list";
             playlist_listview.Show();
-            textBox1.Text = "Unsave list";
+            textBox1.Text = "Unsaved list";
             textBox1.Font = new Font(textBox1.Font, FontStyle.Italic);
+            textBox1.Enabled = true;
+            Image image = Windows_MediaPlayer.Properties.Resources.Playlist;
+
+            pictureBox2.BackgroundImage = image;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            label2.Text = "Unsaved list";
+            label2.ForeColor = Color.Blue;
         }
         private void tabburnbt_Click(object sender, EventArgs e)
         {
@@ -762,9 +870,31 @@ namespace Windows_MediaPlayer
             playlist_listview.Hide();
             textBox1.Text = "Burn list";
             textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+            textBox1.Enabled = true;
+
+            Image image = Windows_MediaPlayer.Properties.Resources.cd_music;
+            pictureBox2.BackgroundImage = image;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            label2.Text = "Insert a blank CD";
+            label2.ForeColor = Color.Gray;
+
         }
 
+        private void tabsyncbt_Click(object sender, EventArgs e)
+        {
+            splitContainer2.Panel2Collapsed = false;
+            button4.Text = "Start sync";
+            textBox1.Text = "Sync list";
+            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+            textBox1.Enabled = false;
+            Image image = Windows_MediaPlayer.Properties.Resources.Mobile_connect;
+            pictureBox2.BackgroundImage = image;
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            label2.Text = "Connect a device";
+            label2.ForeColor = Color.Black;
 
+
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             if (button4.Text=="Save list")
@@ -863,14 +993,7 @@ namespace Windows_MediaPlayer
             splitContainer2.Panel2Collapsed = true;
         }
 
-        private void tabsyncbt_Click(object sender, EventArgs e)
-        {
-            splitContainer2.Panel2Collapsed = false;
-            button4.Text = "Start Sync";
-            textBox1.Text = "Sync list";
-            textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
 
-        }
 
         private void textBox1_MouseHover(object sender, EventArgs e)
         {
@@ -925,12 +1048,13 @@ namespace Windows_MediaPlayer
             if (shuffle == true)
             {
                 shuffle = false;
-                axWindowsMediaPlayer1.settings.setMode("shuffle", true);
+                axWindowsMediaPlayer1.settings.setMode("shuffle", false);
+                return;
             }
-            else if (shuffle == false)
+            if (shuffle == false)
             {
                 shuffle = true;
-                axWindowsMediaPlayer1.settings.setMode("shuffle", false);
+                axWindowsMediaPlayer1.settings.setMode("shuffle", true);
             }
         }
 
@@ -940,6 +1064,7 @@ namespace Windows_MediaPlayer
             {
                 loop = false;
                 axWindowsMediaPlayer1.settings.setMode("loop", false);
+                return;
             }
             else
             {
@@ -1024,8 +1149,11 @@ namespace Windows_MediaPlayer
         }
 
 
+
+
+
         #endregion
 
-  
+
     }
 }
