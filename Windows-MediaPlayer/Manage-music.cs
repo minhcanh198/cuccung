@@ -13,19 +13,24 @@ namespace Windows_MediaPlayer
 {
     public partial class Manage_music : Form
     {
+        List<string> address = new List<string>();
+
         public Manage_music()
         {
             InitializeComponent();
             listBox1.Items.Add(@"D:\M E D I A\M U S I C\");
             listBox1.Items.Add(@"D:\M E D I A");
             this.CancelButton = cancelbtn;
-            OKbtn.DialogResult = DialogResult.OK;
-            address = listBox1.Items[0].ToString();
+            //OKbtn.DialogResult = DialogResult.OK;
+            for (int i =0; i< listBox1.Items.Count; i++)
+            {
+                string st = listBox1.Items[i].ToString();
+                address.Add(st);
+            }
 
         }
-        string address;
 
-        public string getadress
+        public List<string> getadress
         {
             get { return address;}
         }
@@ -36,14 +41,12 @@ namespace Windows_MediaPlayer
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
-
-                address = listBox1.SelectedItem.ToString();
         }
 
         private void OKbtn_Click(object sender, EventArgs e)
         {
             //this.Visible = false;
+            this.Hide();
         }
 
         private void addbtn_Click(object sender, EventArgs e)
@@ -54,6 +57,11 @@ namespace Windows_MediaPlayer
             {
                 st = ofd.SelectedPath;
                 listBox1.Items.Add(st);
+                address.Clear();
+            }
+            for (int i =0; i< listBox1.Items.Count; i++)
+            {
+                address.Add(listBox1.Items[i].ToString());
             }
             
         }
@@ -66,7 +74,16 @@ namespace Windows_MediaPlayer
             if (listBox1.SelectedIndex != -1)
             {
                 for (int i = selectedItems.Count - 1; i >= 0; i--)
+                {
                     listBox1.Items.Remove(selectedItems[i]);
+
+                }
+                address.Clear();
+                for (int i =0; i<listBox1.Items.Count; i++)
+                {
+                    address.Add(listBox1.Items[i].ToString());
+
+                }
             }
         }
     }

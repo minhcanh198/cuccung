@@ -13,6 +13,8 @@ namespace Windows_MediaPlayer
 {
     public partial class Manage_Pictures : Form
     {
+        List<string> address = new List<string>();
+
         public Manage_Pictures()
         {
             InitializeComponent();
@@ -20,43 +22,48 @@ namespace Windows_MediaPlayer
             listBox1.Items.Add(@"D:\M E D I A\P I C T U R E S\HD");
             listBox1.Items.Add(@"D:\M E D I A\P I C T U R E S");
             this.CancelButton = cancelbtn;
-            OKbtn.DialogResult = DialogResult.OK;
-            address = listBox1.Items[0].ToString();
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                string st = listBox1.Items[i].ToString();
+                address.Add(st);
+            }
 
         }
-        string address;
 
-        public string getadress
+        public List<string> getadress
         {
-            get { return address;}
+            get { return address; }
         }
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem != null)
-
-                address = listBox1.SelectedItem.ToString();
         }
 
         private void OKbtn_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            //this.Visible = false;
+            this.Hide();
         }
 
         private void addbtn_Click(object sender, EventArgs e)
         {
-            string st="a";
+            string st;
             FolderBrowserDialog ofd = new FolderBrowserDialog();
-            if (ofd.ShowDialog()== DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 st = ofd.SelectedPath;
                 listBox1.Items.Add(st);
+                address.Clear();
             }
-            
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                address.Add(listBox1.Items[i].ToString());
+            }
+
         }
 
         private void removebtn_Click(object sender, EventArgs e)
@@ -67,7 +74,16 @@ namespace Windows_MediaPlayer
             if (listBox1.SelectedIndex != -1)
             {
                 for (int i = selectedItems.Count - 1; i >= 0; i--)
+                {
                     listBox1.Items.Remove(selectedItems[i]);
+
+                }
+                address.Clear();
+                for (int i = 0; i < listBox1.Items.Count; i++)
+                {
+                    address.Add(listBox1.Items[i].ToString());
+
+                }
             }
         }
     }

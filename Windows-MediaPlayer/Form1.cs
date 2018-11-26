@@ -23,6 +23,12 @@ namespace Windows_MediaPlayer
         private ListViewColumnSorter lvwColumnSorter;
 
         #region Form1
+        Stack<string> backstack = new Stack<string>();
+        Stack<string> forwardstack = new Stack<string>();
+        List<string>MusicLib;
+        string VideosLib;
+        List<string> PicturesLib;
+
         public Form1()
         {
             InitializeComponent();
@@ -42,11 +48,6 @@ namespace Windows_MediaPlayer
         }
 
 
-        Stack<string> backstack = new Stack<string>();
-        Stack<string> forwardstack = new Stack<string>();
-        string MusicLib;
-        string VideosLib;
-        string PicturesLib;
 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -237,29 +238,23 @@ namespace Windows_MediaPlayer
 
         }
 
-
+        Manage_music manage_Music = new Manage_music();
         private void musicToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Manage_music managemusicform = new Manage_music();
-            managemusicform.Text = "Music Library Location";
-            managemusicform.StartPosition = FormStartPosition.CenterScreen;
-            managemusicform.ShowDialog();
+            manage_Music.Text = "Music Library Location";
+            manage_Music.StartPosition = FormStartPosition.CenterScreen;
+            MusicLib = manage_Music.getadress;
 
-            if (managemusicform.DialogResult == DialogResult.OK)
-            {
-                MusicLib = managemusicform.getadress;
-            }
+            manage_Music.ShowDialog();
+
         }
+        Manage_Pictures manage_Pictures = new Manage_Pictures();
         private void picturesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Manage_Pictures manage_Pictures = new Manage_Pictures();
             manage_Pictures.Text = "Pictures Library Location";
             manage_Pictures.StartPosition = FormStartPosition.CenterScreen;
             manage_Pictures.ShowDialog();
-            if (manage_Pictures.DialogResult == DialogResult.OK)
-            {
-                PicturesLib = manage_Pictures.getadress;
-            }
+            PicturesLib = manage_Pictures.getadress;
         }
         private void videosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -398,17 +393,20 @@ namespace Windows_MediaPlayer
                 listView1.Columns.Add("Size", 70);
                 listView1.Columns.Add("", 130);
                 ListViewItem itm;
-
-                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
-                foreach (string fileName in fileEntries)
+                for (int i=0; i< MusicLib.Count; i++)
                 {
-                    string filedir;
-                    filedir = fileName;
+                    string[] fileEntries = Directory.GetFiles(MusicLib[i], "*.mp3");
+                    foreach (string fileName in fileEntries)
+                    {
+                        string filedir;
+                        filedir = fileName;
 
-                    itm = new ListViewItem(converttotaglib_music(filedir));
+                        itm = new ListViewItem(converttotaglib_music(filedir));
 
-                    listView1.Items.Add(itm);
-                    itm.ImageIndex = 2;
+                        listView1.Items.Add(itm);
+                        itm.ImageIndex = 2;
+
+                    }
 
                 }
 
@@ -425,19 +423,23 @@ namespace Windows_MediaPlayer
                 listView1.Columns.Add("Length", 50);
 
                 ListViewItem viewItem;
-                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
-                foreach (string fileName in fileEntries)
+                for (int i = 0; i< MusicLib.Count; i++)
                 {
-                    string filedir;
-                    filedir = fileName;
+                    string[] fileEntries = Directory.GetFiles(MusicLib[i], "*.mp3");
+                    foreach (string fileName in fileEntries)
+                    {
+                        string filedir;
+                        filedir = fileName;
 
-                    viewItem = new ListViewItem(converttotaglib_artist(filedir));
+                        viewItem = new ListViewItem(converttotaglib_artist(filedir));
 
-                    listView1.Items.Add(viewItem);
-                    viewItem.ImageIndex = 0;
+                        listView1.Items.Add(viewItem);
+                        viewItem.ImageIndex = 0;
+
+                    }
+
 
                 }
-
 
             }
             else if (node == "Album")
@@ -454,19 +456,22 @@ namespace Windows_MediaPlayer
                 listView1.Columns.Add("Filename", 0);
                 listView1.Columns.Add("AdressFile", 0);
                 ListViewItem viewItem;
-
-                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
-                foreach (string fileName in fileEntries)
+                for (int i = 0; i<MusicLib.Count; i++)
                 {
-                    string filedir;
-                    filedir = fileName;
+                    string[] fileEntries = Directory.GetFiles(MusicLib[i], "*.mp3");
+                    foreach (string fileName in fileEntries)
+                    {
+                        string filedir;
+                        filedir = fileName;
 
-                    viewItem = new ListViewItem(converttotaglib_album(filedir));
+                        viewItem = new ListViewItem(converttotaglib_album(filedir));
 
-                    listView1.Items.Add(viewItem);
-                    viewItem.ImageIndex = 1;
+                        listView1.Items.Add(viewItem);
+                        viewItem.ImageIndex = 1;
 
+                    }
                 }
+
             }
             else if (node == "Genre")
             {
@@ -480,18 +485,22 @@ namespace Windows_MediaPlayer
                 listView1.Columns.Add("Length", 50);
 
                 ListViewItem viewItem;
-                string[] fileEntries = Directory.GetFiles(MusicLib, "*.mp3");
-                foreach (string fileName in fileEntries)
+                for (int i = 0; i<MusicLib.Count; i++)
                 {
-                    string filedir;
-                    filedir = fileName;
+                    string[] fileEntries = Directory.GetFiles(MusicLib[i], "*.mp3");
+                    foreach (string fileName in fileEntries)
+                    {
+                        string filedir;
+                        filedir = fileName;
 
-                    viewItem = new ListViewItem(converttotaglib_genre(filedir));
+                        viewItem = new ListViewItem(converttotaglib_genre(filedir));
 
-                    listView1.Items.Add(viewItem);
-                    viewItem.ImageIndex = 2;
+                        listView1.Items.Add(viewItem);
+                        viewItem.ImageIndex = 2;
 
+                    }
                 }
+
             }
             else if (node == "Videos")
             {
@@ -538,22 +547,26 @@ namespace Windows_MediaPlayer
                 iml.ImageSize = new Size(90, 70);
 
                 listView1.LargeImageList = iml;
-                string[] fileEntries = Directory.GetFiles(PicturesLib, "*.jpg");
-                foreach (string fileName in fileEntries)
+                for (int i = 0; i<PicturesLib.Count; i++)
                 {
-                    Image image = Image.FromFile(fileName);
-                    string file = Path.GetFileName(fileName);
-                    iml.Images.Add(file, image);
+                    string[] fileEntries = Directory.GetFiles(PicturesLib[i], "*.jpg");
+                    foreach (string fileName in fileEntries)
+                    {
+                        Image image = Image.FromFile(fileName);
+                        string file = Path.GetFileName(fileName);
+                        iml.Images.Add(file, image);
 
-                    ListViewItem viewItem= new ListViewItem();
-                    viewItem.Text = file;
+                        ListViewItem viewItem = new ListViewItem();
+                        viewItem.Text = file;
 
-                    viewItem.ImageKey = file;
-                    viewItem.SubItems.Add(fileName);
+                        viewItem.ImageKey = file;
+                        viewItem.SubItems.Add(fileName);
 
-                    listView1.Items.Add(viewItem);
+                        listView1.Items.Add(viewItem);
 
+                    }
                 }
+              
 
             }
             else if (node == "Playlists")
